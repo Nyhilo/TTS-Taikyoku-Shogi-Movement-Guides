@@ -880,7 +880,7 @@ local GetMovement = {
     end,
     
     Pawn = function(piece, pickup)
-        local tile = GetForwardTile(piece)
+        local tile = GetFrontTile(piece)
 
         if tile == nil then return end
 
@@ -1112,7 +1112,7 @@ local GetMovement = {
     SideMover = function(piece, pickup)
         local leftTiles = GetTiles_W(piece)
         local rightTiles = GetTiles_E(piece)
-        local frontTile = GetForwardTile(piece)
+        local frontTile = GetFrontTile(piece)
         local backTile = GetBackTile(piece)
 
         local lineColor = Colors.Line
@@ -1287,7 +1287,29 @@ local GetMovement = {
     end,
     
     VermillionSparrow = function(piece, pickup)
+        local innerRingTiles = GetInnerRingTiles(piece)
+        local nwtiles = GetTiles_NW(piece)
+        local setiles = GetTiles_SE(piece)
 
+        local lineColor = Colors.Line
+        local tileColor = Colors.Slide
+        if not pickup then
+            lineColor = Colors.Reset
+            tileColor = Colors.Reset
+        end
+
+        for _, tile in ipairs(innerRingTiles) do
+            if tile ~= nil then tile.setColorTint(tileColor) end
+        end
+
+        -- Overwrites some of the inner ring tiles
+        for _, tile in ipairs(nwtiles) do
+            tile.setColorTint(lineColor)
+        end
+
+        for _, tile in ipairs(setiles) do
+            tile.setColorTint(lineColor)
+        end
     end,
     
     VerticalBear = function(piece, pickup)
@@ -1861,6 +1883,19 @@ function GetWhiteHorseTiles(piece)
     return totalTiles
 end
 
+function GetInnerRingTiles(piece)
+    return {
+        GetTopLeftTile(piece),
+        GetFrontTile(piece),
+        GetTopRightTile(piece),
+        GetRightTile(piece),
+        GetBottomRightTile(piece),
+        GetBackTile(piece),
+        GetBottomLeftTile(piece),
+        GetLeftTile(piece)
+    }
+end
+
 --------------------------------
 
 --  ⇑
@@ -2077,7 +2112,7 @@ end
 
 --------------------------------
 
-function GetForwardTile(piece)
+function GetFrontTile(piece)
     if piece == nil then return end
     
     local pos = piece.pick_up_position
@@ -2099,6 +2134,90 @@ function GetBackTile(piece)
 
     local x = pos.x - (UNIT * direction.x) 
     local z = pos.z - (UNIT * direction.z) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+function GetLeftTile(piece)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x - (UNIT * direction.z) 
+    local z = pos.z + (UNIT * direction.x) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+function GetRightTile(piece)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x + (UNIT * direction.z) 
+    local z = pos.z - (UNIT * direction.x) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+function GetTopLeftTile(piece)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x + (UNIT * (direction.x - direction.z)) 
+    local z = pos.z + (UNIT * (direction.x + direction.z)) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+function GetTopRightTile(piece)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x + (UNIT * (direction.x + direction.z)) 
+    local z = pos.z - (UNIT * (direction.x - direction.z)) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+function GetBottomLeftTile(piece)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x - (UNIT * (direction.x + direction.z)) 
+    local z = pos.z + (UNIT * (direction.x - direction.z)) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+function GetBottomRightTile(piece)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x - (UNIT * (direction.x - direction.z)) 
+    local z = pos.z - (UNIT * (direction.x + direction.z)) 
 
     local tile = GetTile(x, z)
 
