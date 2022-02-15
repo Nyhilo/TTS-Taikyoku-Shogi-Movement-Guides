@@ -726,7 +726,14 @@ local GetMovement = {
     end,
     
     Lance = function(piece, pickup)
+        local tiles = GetHits_N(piece)
 
+        local color = Colors.Line
+        if not pickup then color = Colors.Reset end
+
+        for _, tile in ipairs(tiles) do
+            tile.setColorTint(color)
+        end
     end,
     
     LeftArmy = function(piece, pickup)
@@ -1811,6 +1818,75 @@ function GetHorizontalHits(piece)
     return GetTilesFromHits(hits)
 end
 
+--------------------------------
+
+--  ⇑
+-- -·-
+--  |
+function GetHits_N(piece)
+    local pos = piece.pick_up_position
+    local hits = Physics.cast({
+        origin = { pos.x, pos.y, pos.z + (BOARD_LEN/2) },
+        direction = CAST_DIR,
+        size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN },
+        type = 3,
+        max_distance = 0
+        -- ,debug = true
+    })
+
+    return GetTilesFromHits(hits)
+end
+
+--  |
+-- -+-
+--  ⇓
+function GetHits_S(piece)
+
+end
+
+--  ⎹
+-- ⇐+-
+--  ⎹
+function GetHits_W(piece)
+
+end
+
+--  |
+-- -+⇒
+--  |
+function GetHits_E(piece)
+
+end
+
+-- ⇖ |
+--  -+-
+--   |
+function GetHits_NW(piece)
+
+end
+
+--  | ⇗
+-- -+-
+--  |
+function GetHits_NE(piece)
+
+end
+
+--   |
+--  -+-
+-- ⇙ |
+function GetHits_SW(piece)
+
+end
+
+--  |
+-- -+-
+--  | ⇘
+function GetHits_SE(piece)
+
+end
+
+
 
 function GetForwardTile(piece)
     if piece == nil then return end
@@ -1818,7 +1894,7 @@ function GetForwardTile(piece)
     local pos = piece.pick_up_position
     local rotation = piece.pick_up_rotation.y
     local direction = GetXZDirection(rotation)
-    
+    print(rotation..' '..direction.x..' '..direction.z)
     local x = pos.x + (UNIT * direction.x) 
     local z = pos.z + (UNIT * direction.z) 
 
@@ -1834,4 +1910,3 @@ function GetXZDirection(deg)
     if deg >= 315 or  deg < 45  then return { x =  0, z = -1 } end -- South
     if deg >= 45  and deg < 135 then return { x = -1, z =  0 } end -- West
 end
-
