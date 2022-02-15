@@ -180,7 +180,7 @@ local GetMovement = {
     end,
     
     Bishop = function(piece, pickup)
-        local tiles = GetDiagonalHits(piece)
+        local tiles = GetDiagonalTiles(piece)
 
         local color = Colors.Line
         if not pickup then color = Colors.Reset end
@@ -829,7 +829,14 @@ local GetMovement = {
     end,
     
     MultiGeneral = function(piece, pickup)
+        local tiles = GetWhiteHorseTiles(piece)
 
+        local color = Colors.Line
+        if not pickup then color = Colors.Reset end
+
+        for _, tile in ipairs(tiles) do
+            tile.setColorTint(color)
+        end
     end,
     
     NeighboringKing = function(piece, pickup)
@@ -1775,52 +1782,55 @@ end
 
 --------------------------------
 
-function GetDiagonalHits(piece)
-    local pos = piece.pick_up_position
+function GetDiagonalTiles(piece)
+    local totalTiles = {}
 
-    local tiles = {}
-    
-    for i = 0, BOARD_LEN, UNIT do
-        local ne = GetTile(pos.x+i, pos.z+i)
-        local nw = GetTile(pos.x-i, pos.z+i)
-        local se = GetTile(pos.x+i, pos.z-i)
-        local sw = GetTile(pos.x-i, pos.z-i)
+    local nwtiles = GetTiles_NW(piece)
+    local netiles = GetTiles_NE(piece)
+    local swtiles = GetTiles_SW(piece)
+    local setiles = GetTiles_SE(piece)
 
-        if nw ~= nil then
-            table.insert(tiles, (nw))
-        end
-
-        if ne ~= nil then
-            table.insert(tiles, (ne))
-        end
-
-        if se ~= nil then
-            table.insert(tiles, (se))
-        end
-
-        if sw ~= nil then
-            table.insert(tiles, (sw))
+    for _,t in ipairs({nwtiles, netiles, swtiles, setiles}) do
+        for _,v in ipairs(t) do
+            table.insert(totalTiles, v)
         end
     end
 
-     return tiles
+    return totalTiles
 end
 
 function GetCrossTiles(piece)
-    local totalHits = {}
+    local totalTiles = {}
 
-    local nHits = GetTiles_N(piece)
-    local sHits = GetTiles_S(piece)
-    local wHits = GetTiles_W(piece)
-    local eHits = GetTiles_E(piece)
+    local ntiles = GetTiles_N(piece)
+    local stiles = GetTiles_S(piece)
+    local wtiles = GetTiles_W(piece)
+    local etiles = GetTiles_E(piece)
 
-    for _,t in ipairs({nHits, sHits, wHits, eHits}) do
+    for _,t in ipairs({ntiles, stiles, wtiles, etiles}) do
         for _,v in ipairs(t) do
-            table.insert(totalHits, v)
+            table.insert(totalTiles, v)
         end
     end
 
-    return totalHits
+    return totalTiles
+end
+
+function GetWhiteHorseTiles(piece)
+    local totalTiles = {}
+
+    local nwtiles = GetTiles_NW(piece)
+    local ntiles  = GetTiles_N(piece)
+    local netiles = GetTiles_NE(piece)
+    local stiles  = GetTiles_S(piece)
+
+    for _,t in ipairs({nwtiles, ntiles, netiles, stiles}) do
+        for _,v in ipairs(t) do
+            table.insert(totalTiles, v)
+        end
+    end
+
+    return totalTiles
 end
 
 --------------------------------
@@ -1833,9 +1843,9 @@ function GetTiles_N(piece)
     local direction = GetXZDirection(piece)
 
     local origin = {
-          pos.x + ((BOARD_LEN/2) * direction.x)
+          pos.x + ((1 + BOARD_LEN/2) * direction.x)
         , pos.y
-        , pos.z + ((BOARD_LEN/2) * direction.z)
+        , pos.z + ((1 + BOARD_LEN/2) * direction.z)
     }
 
     local size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN }  -- Aligned north-south
@@ -1863,9 +1873,9 @@ function GetTiles_S(piece)
     local direction = GetXZDirection(piece)
 
     local origin = {
-          pos.x - ((BOARD_LEN/2) * direction.x)
+          pos.x - ((1 + BOARD_LEN/2) * direction.x)
         , pos.y
-        , pos.z - ((BOARD_LEN/2) * direction.z)
+        , pos.z - ((1 + BOARD_LEN/2) * direction.z)
     }
 
     local size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN }  -- Aligned north-south
@@ -1893,9 +1903,9 @@ function GetTiles_W(piece)
     local direction = GetXZDirection(piece)
 
     local origin = {
-          pos.x - ((BOARD_LEN/2) * direction.z)
+          pos.x - ((1 + BOARD_LEN/2) * direction.z)
         , pos.y
-        , pos.z + ((BOARD_LEN/2) * direction.x)
+        , pos.z + ((1 + BOARD_LEN/2) * direction.x)
     }
 
     local size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN }  -- Aligned north-south
@@ -1923,9 +1933,9 @@ function GetTiles_E(piece)
     local direction = GetXZDirection(piece)
 
     local origin = {
-          pos.x + ((BOARD_LEN/2) * direction.z)
+          pos.x + ((1 + BOARD_LEN/2) * direction.z)
         , pos.y
-        , pos.z - ((BOARD_LEN/2) * direction.x)
+        , pos.z - ((1 + BOARD_LEN/2) * direction.x)
     }
 
     local size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN }  -- Aligned north-south
@@ -1949,28 +1959,76 @@ end
 --  -+-
 --   |
 function GetTiles_NW(piece)
+    local pos = piece.pick_up_position
 
+    local tiles = {}
+    
+    for i = 1, BOARD_LEN, UNIT do
+        local tile = GetTile(pos.x-i, pos.z+i)
+
+        if tile ~= nil then
+            table.insert(tiles, (tile))
+        end
+    end
+
+     return tiles
 end
 
 --  | ⇗
 -- -+-
 --  |
 function GetTiles_NE(piece)
+    local pos = piece.pick_up_position
 
+    local tiles = {}
+    
+    for i = 1, BOARD_LEN, UNIT do
+        local tile = GetTile(pos.x+i, pos.z+i)
+
+        if tile ~= nil then
+            table.insert(tiles, (tile))
+        end
+    end
+
+    return tiles
 end
 
 --   |
 --  -+-
 -- ⇙ |
 function GetTiles_SW(piece)
+    local pos = piece.pick_up_position
 
+    local tiles = {}
+    
+    for i = 1, BOARD_LEN, UNIT do
+        local tile = GetTile(pos.x-i, pos.z-i)
+
+        if tile ~= nil then
+            table.insert(tiles, (tile))
+        end
+    end
+
+    return tiles
 end
 
 --  |
 -- -+-
 --  | ⇘
 function GetTiles_SE(piece)
+    local pos = piece.pick_up_position
 
+    local tiles = {}
+    
+    for i = 1, BOARD_LEN, UNIT do
+        local tile = GetTile(pos.x+i, pos.z-i)
+
+        if tile ~= nil then
+            table.insert(tiles, (tile))
+        end
+    end
+
+    return tiles
 end
 
 --------------------------------
