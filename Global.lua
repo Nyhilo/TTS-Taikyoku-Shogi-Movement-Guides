@@ -177,7 +177,14 @@ local GetMovement = {
     end,
     
     BirdOfParadise = function(piece, pickup)
+        local tiles = GetWhiteHorseTiles(piece)
 
+        local color = Colors.Line
+        if not pickup then color = Colors.Reset end
+
+        for _, tile in ipairs(tiles) do
+            tile.setColorTint(color)
+        end
     end,
     
     Bishop = function(piece, pickup)
@@ -1372,7 +1379,14 @@ local GetMovement = {
     end,
     
     WhiteHorse = function(piece, pickup)
+        local tiles = GetWhiteHorseTiles(piece)
 
+        local color = Colors.Line
+        if not pickup then color = Colors.Reset end
+
+        for _, tile in ipairs(tiles) do
+            tile.setColorTint(color)
+        end
     end,
     
     WhiteTiger = function(piece, pickup)
@@ -1748,6 +1762,9 @@ function handlePieceMovement(piece, pickup)
     -- Tint the tile under the picked up piece
     local pos = piece.pick_up_position
     local tile = GetTile(pos.x, pos.z)
+
+    if tile == nil then return end
+
     if pickup then 
         tile.setColorTint(Colors.Place) 
     else 
