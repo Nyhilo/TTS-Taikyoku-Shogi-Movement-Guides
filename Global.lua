@@ -726,7 +726,7 @@ local GetMovement = {
     end,
     
     Lance = function(piece, pickup)
-        local tiles = GetHits_N(piece)
+        local tiles = GetTiles_N(piece)
 
         local color = Colors.Line
         if not pickup then color = Colors.Reset end
@@ -1000,17 +1000,12 @@ local GetMovement = {
     end,
     
     Rook = function(piece, pickup)
-        local vtiles = GetVerticalHits(piece)
-        local htiles = GetHorizontalHits(piece)
+        local tiles = GetCrossTiles(piece)
 
         local color = Colors.Line
         if not pickup then color = Colors.Reset end
 
-        for _, tile in ipairs(vtiles) do
-            tile.setColorTint(color)
-        end
-
-        for _, tile in ipairs(htiles) do
+        for _, tile in ipairs(tiles) do
             tile.setColorTint(color)
         end
     end,
@@ -1727,12 +1722,12 @@ end
 
 function GetTile(x, z)
     local hits = Physics.cast({
-          origin = {x, BOARD_HEIGHT, z}
+          origin = { x, BOARD_HEIGHT, z }
         , direction = CAST_DIR
         , size = POINT_SIZE
         , type = 2
         , max_distance = 0
-        , debug = true
+        -- , debug = true
     })
 
     for _, hit in ipairs(hits) do
@@ -1790,32 +1785,21 @@ function GetDiagonalHits(piece)
      return tiles
 end
 
+function GetCrossTiles(piece)
+    local totalHits = {}
 
-function GetVerticalHits(piece)
-    local hits = Physics.cast({
-        origin = piece.pick_up_position,
-        direction = CAST_DIR,
-        size = {POINT_LEN, CAST_HEIGHT, BOARD_LEN },
-        type = 3,
-        max_distance = 0
-        -- ,debug = true
-    })
+    local nHits = GetTiles_N(piece)
+    local sHits = GetTiles_S(piece)
+    local wHits = GetTiles_W(piece)
+    local eHits = GetTiles_E(piece)
 
-    return GetTilesFromHits(hits)
-end
+    for _,t in ipairs({nHits, sHits, wHits, eHits}) do
+        for _,v in ipairs(t) do
+            table.insert(totalHits, v)
+        end
+    end
 
-
-function GetHorizontalHits(piece)
-    local hits = Physics.cast({
-        origin = piece.pick_up_position,
-        direction = {0,1,0},
-        size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN },
-        type = 3,
-        max_distance = 0
-        -- ,debug = true
-    })
-
-    return GetTilesFromHits(hits)
+    return totalHits
 end
 
 --------------------------------
@@ -1823,14 +1807,27 @@ end
 --  ⇑
 -- -·-
 --  |
-function GetHits_N(piece)
+function GetTiles_N(piece)
     local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local origin = {
+          pos.x + ((BOARD_LEN/2) * direction.x)
+        , pos.y
+        , pos.z + ((BOARD_LEN/2) * direction.z)
+    }
+
+    local size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN }  -- Aligned north-south
+    if direction.z == 0 then
+        size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN }    -- Aligned east-west
+    end
+
     local hits = Physics.cast({
-        origin = { pos.x, pos.y, pos.z + (BOARD_LEN/2) },
-        direction = CAST_DIR,
-        size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN },
-        type = 3,
-        max_distance = 0
+          origin = origin
+        , direction = CAST_DIR
+        , size = size
+        , type = 3
+        , max_distance = 0
         -- ,debug = true
     })
 
@@ -1840,61 +1837,129 @@ end
 --  |
 -- -+-
 --  ⇓
-function GetHits_S(piece)
+function GetTiles_S(piece)
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
 
+    local origin = {
+          pos.x - ((BOARD_LEN/2) * direction.x)
+        , pos.y
+        , pos.z - ((BOARD_LEN/2) * direction.z)
+    }
+
+    local size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN }  -- Aligned north-south
+    if direction.z == 0 then
+        size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN }    -- Aligned east-west
+    end
+
+    local hits = Physics.cast({
+          origin = origin
+        , direction = CAST_DIR
+        , size = size
+        , type = 3
+        , max_distance = 0
+        -- ,debug = true
+    })
+
+    return GetTilesFromHits(hits)
 end
 
 --  ⎹
 -- ⇐+-
 --  ⎹
-function GetHits_W(piece)
+function GetTiles_W(piece)
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
 
+    local origin = {
+          pos.x - ((BOARD_LEN/2) * direction.z)
+        , pos.y
+        , pos.z + ((BOARD_LEN/2) * direction.x)
+    }
+
+    local size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN }  -- Aligned north-south
+    if direction.z == 0 then
+        size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN }    -- Aligned east-west
+    end
+
+    local hits = Physics.cast({
+          origin = origin
+        , direction = CAST_DIR
+        , size = size
+        , type = 3
+        , max_distance = 0
+        -- ,debug = true
+    })
+
+    return GetTilesFromHits(hits)
 end
 
 --  |
 -- -+⇒
 --  |
-function GetHits_E(piece)
+function GetTiles_E(piece)
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
 
+    local origin = {
+          pos.x + ((BOARD_LEN/2) * direction.z)
+        , pos.y
+        , pos.z - ((BOARD_LEN/2) * direction.x)
+    }
+
+    local size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN }  -- Aligned north-south
+    if direction.z == 0 then
+        size = { POINT_LEN, CAST_HEIGHT, BOARD_LEN }    -- Aligned east-west
+    end
+
+    local hits = Physics.cast({
+          origin = origin
+        , direction = CAST_DIR
+        , size = size
+        , type = 3
+        , max_distance = 0
+        -- , debug = true
+    })
+
+    return GetTilesFromHits(hits)
 end
 
 -- ⇖ |
 --  -+-
 --   |
-function GetHits_NW(piece)
+function GetTiles_NW(piece)
 
 end
 
 --  | ⇗
 -- -+-
 --  |
-function GetHits_NE(piece)
+function GetTiles_NE(piece)
 
 end
 
 --   |
 --  -+-
 -- ⇙ |
-function GetHits_SW(piece)
+function GetTiles_SW(piece)
 
 end
 
 --  |
 -- -+-
 --  | ⇘
-function GetHits_SE(piece)
+function GetTiles_SE(piece)
 
 end
 
-
+--------------------------------
 
 function GetForwardTile(piece)
     if piece == nil then return end
     
     local pos = piece.pick_up_position
-    local rotation = piece.pick_up_rotation.y
-    local direction = GetXZDirection(rotation)
-    print(rotation..' '..direction.x..' '..direction.z)
+    local direction = GetXZDirection(piece)
+
     local x = pos.x + (UNIT * direction.x) 
     local z = pos.z + (UNIT * direction.z) 
 
@@ -1903,8 +1968,11 @@ function GetForwardTile(piece)
     return tile
 end
 
+--------------------------------
 
-function GetXZDirection(deg)
+function GetXZDirection(piece)
+    local deg = piece.pick_up_rotation.y
+
     if deg >= 135 and deg < 225 then return { x =  0, z =  1 } end -- North
     if deg >= 225 and deg < 315 then return { x =  1, z =  0 } end -- East
     if deg >= 315 or  deg < 45  then return { x =  0, z = -1 } end -- South
