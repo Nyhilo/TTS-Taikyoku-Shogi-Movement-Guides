@@ -1095,7 +1095,28 @@ local GetMovement = {
     end,
     
     SideMover = function(piece, pickup)
+        local leftTiles = GetTiles_W(piece)
+        local rightTiles = GetTiles_E(piece)
+        local frontTile = GetForwardTile(piece)
+        local backTile = GetBackTile(piece)
 
+        local lineColor = Colors.Line
+        local tileColor = Colors.Slide
+        if not pickup then
+            tileColor = Colors.Reset
+            lineColor = Colors.Reset
+        end
+
+        for _, tile in ipairs(leftTiles) do
+            tile.setColorTint(lineColor)
+        end
+
+        for _, tile in ipairs(rightTiles) do
+            tile.setColorTint(lineColor)
+        end
+
+        frontTile.setColorTint(tileColor)
+        backTile.setColorTint(tileColor)
     end,
     
     SideOx = function(piece, pickup)
@@ -1962,6 +1983,20 @@ function GetForwardTile(piece)
 
     local x = pos.x + (UNIT * direction.x) 
     local z = pos.z + (UNIT * direction.z) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+function GetBackTile(piece)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x - (UNIT * direction.x) 
+    local z = pos.z - (UNIT * direction.z) 
 
     local tile = GetTile(x, z)
 
