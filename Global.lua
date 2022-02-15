@@ -8,14 +8,15 @@ local TileTag = 'Tile'
 local Pieces = nil
 
 local Colors = {
-    Reset = {r=1, g=1, b=1, a=0},
-    Line = {r=1, g=0, b=0, a=0.5},
-    JumpLine = {r=1, g=0.5, b=0, a=0.5},
-    Slide = {r=0, g=0, b=1, a=0.5},
-    Jump = {r=1, g=1, b=0, a=0.5},
-    Jump2 = {r=0, g=1, b=0.5, a=0.5},
-    Fly = {r=1, g=0, b=1, a=0.5},
-    Eat = {r=0, g=1, b=1, a=0.5}
+      Reset    = { r=1, g=1,  b=1, a=0 }
+    , Place    = { r=0.5, g=0.5, b=0.5, a=0.5 }
+    , Line     = { r=1, g=0, b=0, a=0.5 }
+    , JumpLine = { r=1, g=0.5, b=0, a=0.5 }
+    , Slide    = { r=0, g=0, b=1, a=0.5 }
+    , Jump     = { r=1, g=1, b=0, a=0.5 }
+    , Jump2    = { r=0, g=1, b=0.5, a=0.5 }
+    , Fly      = { r=1, g=0, b=1, a=0.5 }
+    , Eat      = { r=0, g=1, b=1, a=0.5 }
 }
 
 local UNIT = 1.34
@@ -1741,7 +1742,17 @@ function handlePieceMovement(piece, pickup)
     local movementFunction = MovementTable[name]
     if movementFunction == nil then return end
 
+    -- Tint the relevant movement tiles
     movementFunction(piece, pickup)
+
+    -- Tint the tile under the picked up piece
+    local pos = piece.pick_up_position
+    local tile = GetTile(pos.x, pos.z)
+    if pickup then 
+        tile.setColorTint(Colors.Place) 
+    else 
+        tile.setColorTint(Colors.Reset)
+    end
 end
 
 --------------------
