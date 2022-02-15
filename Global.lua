@@ -1988,18 +1988,22 @@ end
 --   |
 function GetTiles_NW(piece)
     local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = direction.x - direction.z
+    local z = direction.x + direction.z
 
     local tiles = {}
     
     for i = 1, BOARD_LEN, UNIT do
-        local tile = GetTile(pos.x-i, pos.z+i)
+        local tile = GetTile(pos.x + (i * x), pos.z + (i * z))
 
         if tile ~= nil then
             table.insert(tiles, (tile))
         end
     end
 
-     return tiles
+    return tiles
 end
 
 --  | ⇗
@@ -2007,11 +2011,15 @@ end
 --  |
 function GetTiles_NE(piece)
     local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = direction.x + direction.z
+    local z = direction.x - direction.z
 
     local tiles = {}
     
     for i = 1, BOARD_LEN, UNIT do
-        local tile = GetTile(pos.x+i, pos.z+i)
+        local tile = GetTile(pos.x + (i * x), pos.z - (i * z))
 
         if tile ~= nil then
             table.insert(tiles, (tile))
@@ -2026,11 +2034,15 @@ end
 -- ⇙ |
 function GetTiles_SW(piece)
     local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = direction.x + direction.z
+    local z = direction.x - direction.z
 
     local tiles = {}
     
     for i = 1, BOARD_LEN, UNIT do
-        local tile = GetTile(pos.x-i, pos.z-i)
+        local tile = GetTile(pos.x - (i * x), pos.z + (i * z))
 
         if tile ~= nil then
             table.insert(tiles, (tile))
@@ -2045,11 +2057,15 @@ end
 --  | ⇘
 function GetTiles_SE(piece)
     local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = direction.x - direction.z
+    local z = direction.x + direction.z
 
     local tiles = {}
     
     for i = 1, BOARD_LEN, UNIT do
-        local tile = GetTile(pos.x+i, pos.z-i)
+        local tile = GetTile(pos.x - (i * x), pos.z - (i * z))
 
         if tile ~= nil then
             table.insert(tiles, (tile))
