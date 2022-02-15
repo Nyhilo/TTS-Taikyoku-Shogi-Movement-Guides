@@ -19,6 +19,12 @@ local Colors = {
 }
 
 local UNIT = 1.34
+local BOARD_LEN = 50
+local BOARD_HEIGHT = 2.5    -- Height of the surface of the board
+local CAST_HEIGHT = 10
+local POINT_LEN = 0.5
+local POINT_SIZE = { POINT_LEN, POINT_LEN, POINT_LEN }
+local CAST_DIR = { 0, 1, 0 }
 
 ---------------------
 -- Util Extensions --
@@ -987,9 +993,6 @@ local GetMovement = {
     end,
     
     Rook = function(piece, pickup)
-        print('-----')
-        print(piece.getTransformForward())
-        print(piece.getRotation())
         local vtiles = GetVerticalHits(piece)
         local htiles = GetHorizontalHits(piece)
 
@@ -1717,12 +1720,12 @@ end
 
 function GetTile(x, z)
     local hits = Physics.cast({
-          origin = {x, 2.5, z}
-        , direction = {0, 1, 0}
-        , size = {0.5, 0.5, 0.5}
+          origin = {x, BOARD_HEIGHT, z}
+        , direction = CAST_DIR
+        , size = POINT_SIZE
         , type = 2
         , max_distance = 0
-        -- , debug = true
+        , debug = true
     })
 
     for _, hit in ipairs(hits) do
@@ -1747,13 +1750,14 @@ function GetTilesFromHits(hits)
     return tiles
 end
 
+--------------------------------
 
 function GetDiagonalHits(piece)
     local pos = piece.pick_up_position
 
     local tiles = {}
     
-    for i = 0, 50, UNIT do
+    for i = 0, BOARD_LEN, UNIT do
         local ne = GetTile(pos.x+i, pos.z+i)
         local nw = GetTile(pos.x-i, pos.z+i)
         local se = GetTile(pos.x+i, pos.z-i)
@@ -1783,8 +1787,8 @@ end
 function GetVerticalHits(piece)
     local hits = Physics.cast({
         origin = piece.pick_up_position,
-        direction = {0,1,0},
-        size = {0.1,10,100},
+        direction = CAST_DIR,
+        size = {POINT_LEN, CAST_HEIGHT, BOARD_LEN },
         type = 3,
         max_distance = 0
         -- ,debug = true
@@ -1798,7 +1802,7 @@ function GetHorizontalHits(piece)
     local hits = Physics.cast({
         origin = piece.pick_up_position,
         direction = {0,1,0},
-        size = {100,10,0.1},
+        size = { BOARD_LEN, CAST_HEIGHT, POINT_LEN },
         type = 3,
         max_distance = 0
         -- ,debug = true
