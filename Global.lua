@@ -385,7 +385,11 @@ local GetMovement = {
     end,
     
     DragonKing = function(piece, pickup)
+        local cardinalTiles = GetInnerRingTiles(piece)
+        local tiles = GetCrossTiles(piece)
 
+        setColors(cardinalTiles, Colors.Slide, pickup)
+        setColors(tiles, Colors.Line, pickup)
     end,
     
     DrunkenElephant = function(piece, pickup)
@@ -583,8 +587,24 @@ local GetMovement = {
     end,
     
     FuriousFiend = function(piece, pickup)
-    end
-,
+        local leafTiles = {
+            GetRelativeTile(piece, 3, 3),
+            GetRelativeTile(piece, 0, 3),
+            GetRelativeTile(piece, -3, 3),
+            GetRelativeTile(piece, -3, 0),
+            GetRelativeTile(piece, -3, -3),
+            GetRelativeTile(piece, 0, -3),
+            GetRelativeTile(piece, 3, -3),
+            GetRelativeTile(piece, 3, 0)
+        }
+        local outerTiles = Get2ndOrderTiles(piece)
+        local innerTiles = GetInnerRingTiles(piece)
+
+        setColors(leafTiles, Colors.Slide, pickup)
+        setColors(outerTiles, Colors.Jump, pickup)
+        setColors(innerTiles, Colors.Eat, pickup)
+    end,
+
     GlidingSwallow = function(piece, pickup)
 
     end,
