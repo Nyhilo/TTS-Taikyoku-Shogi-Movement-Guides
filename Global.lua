@@ -734,7 +734,7 @@ local GetMovement = {
     end,
     
     Lance = function(piece, pickup)
-        local tiles = GetTiles_N(piece)
+        local tiles = GetTileLine_Top(piece)
 
         local color = Colors.Line
         if not pickup then color = Colors.Reset end
@@ -880,7 +880,7 @@ local GetMovement = {
     end,
     
     Pawn = function(piece, pickup)
-        local tile = GetFrontTile(piece)
+        local tile = GetRelativeTile(piece, 1, 0)
 
         if tile == nil then return end
 
@@ -1110,10 +1110,10 @@ local GetMovement = {
     end,
     
     SideMover = function(piece, pickup)
-        local leftTiles = GetTiles_W(piece)
-        local rightTiles = GetTiles_E(piece)
-        local frontTile = GetFrontTile(piece)
-        local backTile = GetBackTile(piece)
+        local leftTiles = GetTileLine_Left(piece)
+        local rightTiles = GetTileLine_Right(piece)
+        local frontTile = GetRelativeTile(piece, 1, 0)
+        local backTile = GetRelativeTile(piece, -1, 0)
 
         local lineColor = Colors.Line
         local tileColor = Colors.Slide
@@ -1288,8 +1288,8 @@ local GetMovement = {
     
     VermillionSparrow = function(piece, pickup)
         local innerRingTiles = GetInnerRingTiles(piece)
-        local nwtiles = GetTiles_NW(piece)
-        local setiles = GetTiles_SE(piece)
+        local tl_tiles = GetTileLine_TopLeft(piece)
+        local br_tiles = GetTileLine_BottomRight(piece)
 
         local lineColor = Colors.Line
         local tileColor = Colors.Slide
@@ -1303,11 +1303,11 @@ local GetMovement = {
         end
 
         -- Overwrites some of the inner ring tiles
-        for _, tile in ipairs(nwtiles) do
+        for _, tile in ipairs(tl_tiles) do
             tile.setColorTint(lineColor)
         end
 
-        for _, tile in ipairs(setiles) do
+        for _, tile in ipairs(br_tiles) do
             tile.setColorTint(lineColor)
         end
     end,
@@ -1835,12 +1835,12 @@ end
 function GetDiagonalTiles(piece)
     local totalTiles = {}
 
-    local nwtiles = GetTiles_NW(piece)
-    local netiles = GetTiles_NE(piece)
-    local swtiles = GetTiles_SW(piece)
-    local setiles = GetTiles_SE(piece)
+    local tl_tiles = GetTileLine_TopLeft(piece)
+    local tr_tiles = GetTileLine_TopRight(piece)
+    local bl_tiles = GetTileLine_BottomLeft(piece)
+    local br_tiles = GetTileLine_BottomRight(piece)
 
-    for _,t in ipairs({nwtiles, netiles, swtiles, setiles}) do
+    for _,t in ipairs({tl_tiles, tr_tiles, bl_tiles, br_tiles}) do
         for _,v in ipairs(t) do
             table.insert(totalTiles, v)
         end
@@ -1852,12 +1852,12 @@ end
 function GetCrossTiles(piece)
     local totalTiles = {}
 
-    local ntiles = GetTiles_N(piece)
-    local stiles = GetTiles_S(piece)
-    local wtiles = GetTiles_W(piece)
-    local etiles = GetTiles_E(piece)
+    local topTiles = GetTileLine_Top(piece)
+    local bottomTiles = GetTileLine_Bottom(piece)
+    local leftTiles = GetTileLine_Left(piece)
+    local rightTiles = GetTileLine_Right(piece)
 
-    for _,t in ipairs({ntiles, stiles, wtiles, etiles}) do
+    for _,t in ipairs({topTiles, bottomTiles, leftTiles, rightTiles}) do
         for _,v in ipairs(t) do
             table.insert(totalTiles, v)
         end
@@ -1869,12 +1869,12 @@ end
 function GetWhiteHorseTiles(piece)
     local totalTiles = {}
 
-    local nwtiles = GetTiles_NW(piece)
-    local ntiles  = GetTiles_N(piece)
-    local netiles = GetTiles_NE(piece)
-    local stiles  = GetTiles_S(piece)
+    local tl_tiles = GetTileLine_TopLeft(piece)
+    local topTiles  = GetTileLine_Top(piece)
+    local tr_tiles = GetTileLine_TopRight(piece)
+    local bottomTiles  = GetTileLine_Bottom(piece)
 
-    for _,t in ipairs({nwtiles, ntiles, netiles, stiles}) do
+    for _,t in ipairs({tl_tiles, topTiles, tr_tiles, bottomTiles}) do
         for _,v in ipairs(t) do
             table.insert(totalTiles, v)
         end
@@ -1885,14 +1885,14 @@ end
 
 function GetInnerRingTiles(piece)
     return {
-        GetTopLeftTile(piece),
-        GetFrontTile(piece),
-        GetTopRightTile(piece),
-        GetRightTile(piece),
-        GetBottomRightTile(piece),
-        GetBackTile(piece),
-        GetBottomLeftTile(piece),
-        GetLeftTile(piece)
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, 1, 1),
+        GetRelativeTile(piece, 0, 1),
+        GetRelativeTile(piece, -1, 1),
+        GetRelativeTile(piece, -1, 0),
+        GetRelativeTile(piece, -1, -1),
+        GetRelativeTile(piece, 0, -1)
     }
 end
 
@@ -1901,7 +1901,7 @@ end
 --  ⇑
 -- -·-
 --  |
-function GetTiles_N(piece)
+function GetTileLine_Top(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -1931,7 +1931,7 @@ end
 --  |
 -- -+-
 --  ⇓
-function GetTiles_S(piece)
+function GetTileLine_Bottom(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -1961,7 +1961,7 @@ end
 --  ⎹
 -- ⇐+-
 --  ⎹
-function GetTiles_W(piece)
+function GetTileLine_Left(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -1991,7 +1991,7 @@ end
 --  |
 -- -+⇒
 --  |
-function GetTiles_E(piece)
+function GetTileLine_Right(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -2021,7 +2021,7 @@ end
 -- ⇖ |
 --  -+-
 --   |
-function GetTiles_NW(piece)
+function GetTileLine_TopLeft(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -2044,7 +2044,7 @@ end
 --  | ⇗
 -- -+-
 --  |
-function GetTiles_NE(piece)
+function GetTileLine_TopRight(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -2067,7 +2067,7 @@ end
 --   |
 --  -+-
 -- ⇙ |
-function GetTiles_SW(piece)
+function GetTileLine_BottomLeft(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -2090,7 +2090,7 @@ end
 --  |
 -- -+-
 --  | ⇘
-function GetTiles_SE(piece)
+function GetTileLine_BottomRight(piece)
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
@@ -2111,38 +2111,6 @@ function GetTiles_SE(piece)
 end
 
 --------------------------------
-
-function GetFrontTile(piece)
-    return GetRelativeTile(piece, 1, 0)
-end
-
-function GetBackTile(piece)
-    return GetRelativeTile(piece, -1, 0)
-end
-
-function GetLeftTile(piece)
-    return GetRelativeTile(piece, 0, -1)
-end
-
-function GetRightTile(piece)
-    return GetRelativeTile(piece, 0, 1)
-end
-
-function GetTopLeftTile(piece)
-    return GetRelativeTile(piece, 1, -1)
-end
-
-function GetTopRightTile(piece)
-    return GetRelativeTile(piece, 1, 1)
-end
-
-function GetBottomLeftTile(piece)
-    return GetRelativeTile(piece, -1, -1)
-end
-
-function GetBottomRightTile(piece)
-    return GetRelativeTile(piece, -1, 1)
-end
 
 function GetRelativeTile(piece, up, right)
     if piece == nil then return end
