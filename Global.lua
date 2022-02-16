@@ -351,7 +351,34 @@ local GetMovement = {
     end,
     
     DivineSparrow = function(piece, pickup)
+        local innerRingTiles = GetInnerRingTiles(piece)
+        local tl_tiles = GetTileLine_TopLeft(piece)
+        local br_tiles = GetTileLine_BottomRight(piece)
+        local bl_tiles = GetTileLine_BottomLeft(piece)
 
+        local lineColor = Colors.Line
+        local tileColor = Colors.Slide
+        if not pickup then
+            lineColor = Colors.Reset
+            tileColor = Colors.Reset
+        end
+
+        for _, tile in ipairs(innerRingTiles) do
+            if tile ~= nil then tile.setColorTint(tileColor) end
+        end
+
+        -- Overwrites some of the inner ring tiles
+        for _, tile in ipairs(tl_tiles) do
+            tile.setColorTint(lineColor)
+        end
+
+        for _, tile in ipairs(br_tiles) do
+            tile.setColorTint(lineColor)
+        end
+
+        for _, tile in ipairs(bl_tiles) do
+            tile.setColorTint(lineColor)
+        end
     end,
     
     DivineTiger = function(piece, pickup)
