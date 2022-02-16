@@ -180,22 +180,14 @@ local GetMovement = {
         local tiles = GetWhiteHorseTiles(piece)
 
         local color = Colors.Line
-        if not pickup then color = Colors.Reset end
-
-        for _, tile in ipairs(tiles) do
-            tile.setColorTint(color)
-        end
+        setColors(tiles, color, pickup)
     end,
     
     Bishop = function(piece, pickup)
         local tiles = GetDiagonalTiles(piece)
 
         local color = Colors.Line
-        if not pickup then color = Colors.Reset end
-
-        for _, tile in ipairs(tiles) do
-            tile.setColorTint(color)
-        end
+        setColors(tiles, color, pickup)
     end,
     
     BishopGeneral = function(piece, pickup)
@@ -358,27 +350,13 @@ local GetMovement = {
 
         local lineColor = Colors.Line
         local tileColor = Colors.Slide
-        if not pickup then
-            lineColor = Colors.Reset
-            tileColor = Colors.Reset
-        end
 
-        for _, tile in ipairs(innerRingTiles) do
-            if tile ~= nil then tile.setColorTint(tileColor) end
-        end
+        setColors(innerRingTiles, tileColor, pickup)
 
         -- Overwrites some of the inner ring tiles
-        for _, tile in ipairs(tl_tiles) do
-            tile.setColorTint(lineColor)
-        end
-
-        for _, tile in ipairs(br_tiles) do
-            tile.setColorTint(lineColor)
-        end
-
-        for _, tile in ipairs(bl_tiles) do
-            tile.setColorTint(lineColor)
-        end
+        setColors(tl_tiles, lineColor, pickup)
+        setColors(br_tiles, lineColor, pickup)
+        setColors(bl_tiles, lineColor, pickup)
     end,
     
     DivineTiger = function(piece, pickup)
@@ -764,11 +742,7 @@ local GetMovement = {
         local tiles = GetTileLine_Top(piece)
 
         local color = Colors.Line
-        if not pickup then color = Colors.Reset end
-
-        for _, tile in ipairs(tiles) do
-            tile.setColorTint(color)
-        end
+        setColors(tiles, color, pickup)
     end,
     
     LeftArmy = function(piece, pickup)
@@ -821,18 +795,9 @@ local GetMovement = {
 
         local outerColor = Colors.Jump
         local innerColor = Colors.Eat
-        if not pickup then
-            outerColor = Colors.Reset
-            innerColor = Colors.Reset
-        end
 
-        for _, tile in ipairs(outerTiles) do
-            tile.setColorTint(outerColor)
-        end
-
-        for _, tile in ipairs(innerTiles) do
-            tile.setColorTint(innerColor)
-        end
+        setColors(outerTiles, outerColor, pickup)
+        setColors(innerTiles, innerColor, pickup)
     end,
     
     LionDog = function(piece, pickup)
@@ -883,11 +848,7 @@ local GetMovement = {
         local tiles = GetWhiteHorseTiles(piece)
 
         local color = Colors.Line
-        if not pickup then color = Colors.Reset end
-
-        for _, tile in ipairs(tiles) do
-            tile.setColorTint(color)
-        end
+        setColors(tiles, color, pickup)
     end,
     
     NeighboringKing = function(piece, pickup)
@@ -925,12 +886,7 @@ local GetMovement = {
     Pawn = function(piece, pickup)
         local tile = GetRelativeTile(piece, 1, 0)
 
-        if tile == nil then return end
-
-        local color = Colors.Slide
-        if not pickup then color = Colors.Reset end
-
-        tile.setColorTint(color)
+        setColor(tile, Colors.Slide, pickup)
     end,
     
     PeacefulMountain = function(piece, pickup)
@@ -1061,11 +1017,7 @@ local GetMovement = {
         local tiles = GetCrossTiles(piece)
 
         local color = Colors.Line
-        if not pickup then color = Colors.Reset end
-
-        for _, tile in ipairs(tiles) do
-            tile.setColorTint(color)
-        end
+        setColors(tiles, color, pickup)
     end,
     
     RookGeneral = function(piece, pickup)
@@ -1160,21 +1112,12 @@ local GetMovement = {
 
         local lineColor = Colors.Line
         local tileColor = Colors.Slide
-        if not pickup then
-            tileColor = Colors.Reset
-            lineColor = Colors.Reset
-        end
 
-        for _, tile in ipairs(leftTiles) do
-            tile.setColorTint(lineColor)
-        end
+        setColors(leftTiles, lineColor, pickup)
+        setColors(rightTiles, lineColor, pickup)
 
-        for _, tile in ipairs(rightTiles) do
-            tile.setColorTint(lineColor)
-        end
-
-        frontTile.setColorTint(tileColor)
-        backTile.setColorTint(tileColor)
+        setColor(frontTile, tileColor, pickup)
+        setColor(backTile, tileColor, pickup)
     end,
     
     SideOx = function(piece, pickup)
@@ -1336,23 +1279,12 @@ local GetMovement = {
 
         local lineColor = Colors.Line
         local tileColor = Colors.Slide
-        if not pickup then
-            lineColor = Colors.Reset
-            tileColor = Colors.Reset
-        end
 
-        for _, tile in ipairs(innerRingTiles) do
-            if tile ~= nil then tile.setColorTint(tileColor) end
-        end
+        setColors(innerRingTiles, tileColor, pickup)
 
         -- Overwrites some of the inner ring tiles
-        for _, tile in ipairs(tl_tiles) do
-            tile.setColorTint(lineColor)
-        end
-
-        for _, tile in ipairs(br_tiles) do
-            tile.setColorTint(lineColor)
-        end
+        setColors(tl_tiles, lineColor, pickup)
+        setColors(br_tiles, lineColor, pickup)
     end,
     
     VerticalBear = function(piece, pickup)
@@ -1447,11 +1379,7 @@ local GetMovement = {
         local tiles = GetWhiteHorseTiles(piece)
 
         local color = Colors.Line
-        if not pickup then color = Colors.Reset end
-
-        for _, tile in ipairs(tiles) do
-            tile.setColorTint(color)
-        end
+        setColors(tiles, color, pickup)
     end,
     
     WhiteTiger = function(piece, pickup)
@@ -1830,11 +1758,27 @@ function handlePieceMovement(piece, pickup)
 
     if tile == nil then return end
 
-    if pickup then 
-        tile.setColorTint(Colors.Place) 
-    else 
-        tile.setColorTint(Colors.Reset)
+    setColor(tile, Colors.Place, pickup)
+end
+
+
+function setColors(tiles, color, pickup)
+    if not pickup then color = Colors.Reset end
+
+    for _, tile in ipairs(tiles) do
+        if tile ~= nil then
+            tile.setColorTint(color)
+        end
     end
+end
+
+
+function setColor(tile, color, pickup)
+    if tile == nil then return end
+
+    if not pickup then color = Colors.Reset end
+
+    tile.setColorTint(color)
 end
 
 --------------------
