@@ -179,15 +179,13 @@ local GetMovement = {
     BirdOfParadise = function(piece, pickup)
         local tiles = GetWhiteHorseTiles(piece)
 
-        local color = Colors.Line
-        setColors(tiles, color, pickup)
+        setColors(tiles, Colors.Line, pickup)
     end,
     
     Bishop = function(piece, pickup)
         local tiles = GetDiagonalTiles(piece)
 
-        local color = Colors.Line
-        setColors(tiles, color, pickup)
+        setColors(tiles, Colors.Line, pickup)
     end,
     
     BishopGeneral = function(piece, pickup)
@@ -348,15 +346,12 @@ local GetMovement = {
         local br_tiles = GetTileLine_BottomRight(piece)
         local bl_tiles = GetTileLine_BottomLeft(piece)
 
-        local lineColor = Colors.Line
-        local tileColor = Colors.Slide
-
-        setColors(innerRingTiles, tileColor, pickup)
+        setColors(innerRingTiles, Colors.Slide, pickup)
 
         -- Overwrites some of the inner ring tiles
-        setColors(tl_tiles, lineColor, pickup)
-        setColors(br_tiles, lineColor, pickup)
-        setColors(bl_tiles, lineColor, pickup)
+        setColors(tl_tiles, Colors.Line, pickup)
+        setColors(br_tiles, Colors.Line, pickup)
+        setColors(bl_tiles, Colors.Line, pickup)
     end,
     
     DivineTiger = function(piece, pickup)
@@ -745,8 +740,7 @@ local GetMovement = {
     Lance = function(piece, pickup)
         local tiles = GetTileLine_Top(piece)
 
-        local color = Colors.Line
-        setColors(tiles, color, pickup)
+        setColors(tiles, Colors.Line, pickup)
     end,
     
     LeftArmy = function(piece, pickup)
@@ -797,11 +791,8 @@ local GetMovement = {
         local outerTiles = Get2ndOrderTiles(piece)
         local innerTiles = GetInnerRingTiles(piece)
 
-        local outerColor = Colors.Jump
-        local innerColor = Colors.Eat
-
-        setColors(outerTiles, outerColor, pickup)
-        setColors(innerTiles, innerColor, pickup)
+        setColors(outerTiles, Colors.Jump, pickup)
+        setColors(innerTiles, Colors.Eat, pickup)
     end,
     
     LionDog = function(piece, pickup)
@@ -851,8 +842,7 @@ local GetMovement = {
     MultiGeneral = function(piece, pickup)
         local tiles = GetWhiteHorseTiles(piece)
 
-        local color = Colors.Line
-        setColors(tiles, color, pickup)
+        setColors(tiles, Colors.Line, pickup)
     end,
     
     NeighboringKing = function(piece, pickup)
@@ -1020,8 +1010,7 @@ local GetMovement = {
     Rook = function(piece, pickup)
         local tiles = GetCrossTiles(piece)
 
-        local color = Colors.Line
-        setColors(tiles, color, pickup)
+        setColors(tiles, Colors.Line, pickup)
     end,
     
     RookGeneral = function(piece, pickup)
@@ -1114,14 +1103,11 @@ local GetMovement = {
         local frontTile = GetRelativeTile(piece, 1, 0)
         local backTile = GetRelativeTile(piece, -1, 0)
 
-        local lineColor = Colors.Line
-        local tileColor = Colors.Slide
+        setColors(leftTiles, Colors.Line, pickup)
+        setColors(rightTiles, Colors.Line, pickup)
 
-        setColors(leftTiles, lineColor, pickup)
-        setColors(rightTiles, lineColor, pickup)
-
-        setColor(frontTile, tileColor, pickup)
-        setColor(backTile, tileColor, pickup)
+        setColor(frontTile, Colors.Slide, pickup)
+        setColor(backTile, Colors.Slide, pickup)
     end,
     
     SideOx = function(piece, pickup)
@@ -1281,14 +1267,11 @@ local GetMovement = {
         local tl_tiles = GetTileLine_TopLeft(piece)
         local br_tiles = GetTileLine_BottomRight(piece)
 
-        local lineColor = Colors.Line
-        local tileColor = Colors.Slide
-
-        setColors(innerRingTiles, tileColor, pickup)
+        setColors(innerRingTiles, Colors.Slide, pickup)
 
         -- Overwrites some of the inner ring tiles
-        setColors(tl_tiles, lineColor, pickup)
-        setColors(br_tiles, lineColor, pickup)
+        setColors(tl_tiles, Colors.Line, pickup)
+        setColors(br_tiles, Colors.Line, pickup)
     end,
     
     VerticalBear = function(piece, pickup)
@@ -1382,8 +1365,7 @@ local GetMovement = {
     WhiteHorse = function(piece, pickup)
         local tiles = GetWhiteHorseTiles(piece)
 
-        local color = Colors.Line
-        setColors(tiles, color, pickup)
+        setColors(tiles, Colors.Line, pickup)
     end,
     
     WhiteTiger = function(piece, pickup)
