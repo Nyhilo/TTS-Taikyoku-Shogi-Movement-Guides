@@ -376,7 +376,11 @@ local GetMovement = {
     end,
     
     DragonHorse = function(piece, pickup)
+        local cardinalTiles = GetInnerRingTiles(piece)
+        local diagonalTiles = GetDiagonalTiles(piece)
 
+        setColors(cardinalTiles, Colors.Slide, pickup)
+        setColors(diagonalTiles, Colors.Line, pickup)
     end,
     
     DragonKing = function(piece, pickup)
@@ -1817,6 +1821,50 @@ function GetTilesFromHits(hits)
     return tiles
 end
 
+
+function GetRelativeTile(piece, up, right)
+    if piece == nil then return end
+    
+    local pos = piece.pick_up_position
+    local direction = GetXZDirection(piece)
+
+    local x = pos.x + (UNIT * (direction.x * up)) + (UNIT * (direction.z * right)) 
+    local z = pos.z + (UNIT * (direction.x * right)) + (UNIT * (direction.z * up)) 
+
+    local tile = GetTile(x, z)
+
+    return tile
+end
+
+--------------------------------
+
+function GetInnerRingTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, 1, 1),
+        GetRelativeTile(piece, 0, 1),
+        GetRelativeTile(piece, -1, 1),
+        GetRelativeTile(piece, -1, 0),
+        GetRelativeTile(piece, -1, -1),
+        GetRelativeTile(piece, 0, -1)
+    }
+end
+
+
+function Get2ndOrderTiles(piece)
+    local tiles = {}
+
+    -- Returns a 5x5 grid of tiles centered on the piece
+    for i=-2, 2 do
+        for j=-2, 2 do
+            table.insert(tiles, (GetRelativeTile(piece, i, j)))
+        end
+    end
+
+    return tiles
+end
+
 --------------------------------
 
 function GetDiagonalTiles(piece)
@@ -1836,6 +1884,7 @@ function GetDiagonalTiles(piece)
     return totalTiles
 end
 
+
 function GetCrossTiles(piece)
     local totalTiles = {}
 
@@ -1853,6 +1902,7 @@ function GetCrossTiles(piece)
     return totalTiles
 end
 
+
 function GetWhiteHorseTiles(piece)
     local totalTiles = {}
 
@@ -1869,34 +1919,6 @@ function GetWhiteHorseTiles(piece)
 
     return totalTiles
 end
-
-function GetInnerRingTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, 1, 1),
-        GetRelativeTile(piece, 0, 1),
-        GetRelativeTile(piece, -1, 1),
-        GetRelativeTile(piece, -1, 0),
-        GetRelativeTile(piece, -1, -1),
-        GetRelativeTile(piece, 0, -1)
-    }
-end
-
-function Get2ndOrderTiles(piece)
-    local tiles = {}
-
-    -- Returns a 5x5 grid of tiles centered on the piece
-    for i=-2, 2 do
-        for j=-2, 2 do
-            table.insert(tiles, (GetRelativeTile(piece, i, j)))
-        end
-    end
-
-    return tiles
-end
-
---------------------------------
 
 --  ⇑
 -- -·-
@@ -2108,22 +2130,6 @@ function GetTileLine_BottomRight(piece)
     end
 
     return tiles
-end
-
---------------------------------
-
-function GetRelativeTile(piece, up, right)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x + (UNIT * (direction.x * up)) + (UNIT * (direction.z * right)) 
-    local z = pos.z + (UNIT * (direction.x * right)) + (UNIT * (direction.z * up)) 
-
-    local tile = GetTile(x, z)
-
-    return tile
 end
 
 --------------------------------
