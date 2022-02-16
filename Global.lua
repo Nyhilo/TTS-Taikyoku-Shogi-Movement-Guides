@@ -789,7 +789,23 @@ local GetMovement = {
     end,
     
     Lion = function(piece, pickup)
+        local outerTiles = Get2ndOrderTiles(piece)
+        local innerTiles = GetInnerRingTiles(piece)
 
+        local outerColor = Colors.Jump
+        local innerColor = Colors.Eat
+        if not pickup then
+            outerColor = Colors.Reset
+            innerColor = Colors.Reset
+        end
+
+        for _, tile in ipairs(outerTiles) do
+            tile.setColorTint(outerColor)
+        end
+
+        for _, tile in ipairs(innerTiles) do
+            tile.setColorTint(innerColor)
+        end
     end,
     
     LionDog = function(piece, pickup)
@@ -1894,6 +1910,19 @@ function GetInnerRingTiles(piece)
         GetRelativeTile(piece, -1, -1),
         GetRelativeTile(piece, 0, -1)
     }
+end
+
+function Get2ndOrderTiles(piece)
+    local tiles = {}
+
+    -- Returns a 5x5 grid of tiles centered on the piece
+    for i=-2, 2 do
+        for j=-2, 2 do
+            table.insert(tiles, (GetRelativeTile(piece, i, j)))
+        end
+    end
+
+    return tiles
 end
 
 --------------------------------
