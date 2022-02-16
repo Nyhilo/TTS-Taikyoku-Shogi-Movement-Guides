@@ -177,7 +177,7 @@ local GetMovement = {
     end,
     
     BirdOfParadise = function(piece, pickup)
-        local tiles = GetWhiteHorseTiles(piece)
+        local tiles = GetMultiGeneralTiles(piece)
 
         setColors(tiles, Colors.Line, pickup)
     end,
@@ -289,7 +289,9 @@ local GetMovement = {
     end,
     
     ClimbingMonkey = function(piece, pickup)
+        local tiles = GetCopperGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     CloudDragon = function(piece, pickup)
@@ -317,7 +319,9 @@ local GetMovement = {
     end,
     
     CopperGeneral = function(piece, pickup)
+        local tiles = GetCopperGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     CrossbowGeneral = function(piece, pickup)
@@ -363,7 +367,9 @@ local GetMovement = {
     end,
     
     Dog = function(piece, pickup)
+        local tiles = GetIronGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     Donkey = function(piece, pickup)
@@ -459,7 +465,9 @@ local GetMovement = {
     end,
     
     FlyingGoose = function(piece, pickup)
+        local tiles = GetCopperGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     FlyingHorse = function(piece, pickup)
@@ -590,7 +598,9 @@ local GetMovement = {
     end,
     
     GoldGeneral = function(piece, pickup)
+        local tiles = GetGoldGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     GoldenBird = function(piece, pickup)
@@ -714,7 +724,9 @@ local GetMovement = {
     end,
     
     IronGeneral = function(piece, pickup)
+        local tiles = GetIronGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     King = function(piece, pickup)
@@ -840,7 +852,7 @@ local GetMovement = {
     end,
     
     MultiGeneral = function(piece, pickup)
-        local tiles = GetWhiteHorseTiles(piece)
+        local tiles = GetMultiGeneralTiles(piece)
 
         setColors(tiles, Colors.Line, pickup)
     end,
@@ -1135,7 +1147,9 @@ local GetMovement = {
     end,
     
     SilverGeneral = function(piece, pickup)
+        local tiles = GetSilverGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     SilverRabbit = function(piece, pickup)
@@ -1207,7 +1221,9 @@ local GetMovement = {
     end,
     
     SwordSoldier = function(piece, pickup)
+        local tiles = GetTileGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     TeachingKing = function(piece, pickup)
@@ -1235,7 +1251,9 @@ local GetMovement = {
     end,
     
     TileGeneral = function(piece, pickup)
+        local tiles = GetTileGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     TreacherousFox = function(piece, pickup)
@@ -1323,7 +1341,9 @@ local GetMovement = {
     end,
     
     ViolentStag = function(piece, pickup)
+        local tiles = GetSilverGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     ViolentWind = function(piece, pickup)
@@ -1331,7 +1351,9 @@ local GetMovement = {
     end,
     
     ViolentWolf = function(piece, pickup)
+        local tiles = GetGoldGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     WalkingHeron = function(piece, pickup)
@@ -1363,7 +1385,7 @@ local GetMovement = {
     end,
     
     WhiteHorse = function(piece, pickup)
-        local tiles = GetWhiteHorseTiles(piece)
+        local tiles = GetMultiGeneralTiles(piece)
 
         setColors(tiles, Colors.Line, pickup)
     end,
@@ -1884,23 +1906,7 @@ function GetCrossTiles(piece)
     return totalTiles
 end
 
-
-function GetWhiteHorseTiles(piece)
-    local totalTiles = {}
-
-    local tl_tiles = GetTileLine_TopLeft(piece)
-    local topTiles  = GetTileLine_Top(piece)
-    local tr_tiles = GetTileLine_TopRight(piece)
-    local bottomTiles  = GetTileLine_Bottom(piece)
-
-    for _,t in ipairs({tl_tiles, topTiles, tr_tiles, bottomTiles}) do
-        for _,v in ipairs(t) do
-            table.insert(totalTiles, v)
-        end
-    end
-
-    return totalTiles
-end
+--------------------------------
 
 --  ⇑
 -- -·-
@@ -2112,6 +2118,72 @@ function GetTileLine_BottomRight(piece)
     end
 
     return tiles
+end
+
+--------------------------------
+
+function GetTileGeneralTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 1),
+        GetRelativeTile(piece, -1, 0)
+    }
+end
+
+function GetCopperGeneralTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, 1, 1),
+        GetRelativeTile(piece, -1, 0)
+    }
+end
+
+function GetIronGeneralTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, 1, 1)
+    }
+end
+
+function GetSilverGeneralTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, 1, 1),
+        GetRelativeTile(piece, -1, -1),
+        GetRelativeTile(piece, -1, 1)
+    }
+end
+
+function GetGoldGeneralTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, 1, 1),
+        GetRelativeTile(piece, 0, -1),
+        GetRelativeTile(piece, 0, 1),
+        GetRelativeTile(piece, -1, 0)
+    }
+end
+
+
+function GetMultiGeneralTiles(piece)
+    local totalTiles = {}
+
+    local tl_tiles = GetTileLine_TopLeft(piece)
+    local topTiles  = GetTileLine_Top(piece)
+    local tr_tiles = GetTileLine_TopRight(piece)
+    local bottomTiles  = GetTileLine_Bottom(piece)
+
+    for _,t in ipairs({tl_tiles, topTiles, tr_tiles, bottomTiles}) do
+        for _,v in ipairs(t) do
+            table.insert(totalTiles, v)
+        end
+    end
+
+    return totalTiles
 end
 
 --------------------------------
