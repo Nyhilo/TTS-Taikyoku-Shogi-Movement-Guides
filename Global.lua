@@ -2113,111 +2113,45 @@ end
 --------------------------------
 
 function GetFrontTile(piece)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x + (UNIT * direction.x) 
-    local z = pos.z + (UNIT * direction.z) 
-
-    local tile = GetTile(x, z)
-
-    return tile
+    return GetRelativeTile(piece, 1, 0)
 end
 
 function GetBackTile(piece)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x - (UNIT * direction.x) 
-    local z = pos.z - (UNIT * direction.z) 
-
-    local tile = GetTile(x, z)
-
-    return tile
+    return GetRelativeTile(piece, -1, 0)
 end
 
 function GetLeftTile(piece)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x - (UNIT * direction.z) 
-    local z = pos.z + (UNIT * direction.x) 
-
-    local tile = GetTile(x, z)
-
-    return tile
+    return GetRelativeTile(piece, 0, -1)
 end
 
 function GetRightTile(piece)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x + (UNIT * direction.z) 
-    local z = pos.z - (UNIT * direction.x) 
-
-    local tile = GetTile(x, z)
-
-    return tile
+    return GetRelativeTile(piece, 0, 1)
 end
 
 function GetTopLeftTile(piece)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x + (UNIT * (direction.x - direction.z)) 
-    local z = pos.z + (UNIT * (direction.x + direction.z)) 
-
-    local tile = GetTile(x, z)
-
-    return tile
+    return GetRelativeTile(piece, 1, -1)
 end
 
 function GetTopRightTile(piece)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x + (UNIT * (direction.x + direction.z)) 
-    local z = pos.z - (UNIT * (direction.x - direction.z)) 
-
-    local tile = GetTile(x, z)
-
-    return tile
+    return GetRelativeTile(piece, 1, 1)
 end
 
 function GetBottomLeftTile(piece)
-    if piece == nil then return end
-    
-    local pos = piece.pick_up_position
-    local direction = GetXZDirection(piece)
-
-    local x = pos.x - (UNIT * (direction.x + direction.z)) 
-    local z = pos.z + (UNIT * (direction.x - direction.z)) 
-
-    local tile = GetTile(x, z)
-
-    return tile
+    return GetRelativeTile(piece, -1, -1)
 end
 
 function GetBottomRightTile(piece)
+    return GetRelativeTile(piece, -1, 1)
+end
+
+function GetRelativeTile(piece, up, right)
     if piece == nil then return end
     
     local pos = piece.pick_up_position
     local direction = GetXZDirection(piece)
 
-    local x = pos.x - (UNIT * (direction.x - direction.z)) 
-    local z = pos.z - (UNIT * (direction.x + direction.z)) 
+    local x = pos.x + (UNIT * (direction.x * up)) + (UNIT * (direction.z * right)) 
+    local z = pos.z + (UNIT * (direction.x * right)) + (UNIT * (direction.z * up)) 
 
     local tile = GetTile(x, z)
 
