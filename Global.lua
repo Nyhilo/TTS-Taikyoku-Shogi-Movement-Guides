@@ -183,7 +183,7 @@ local GetMovement = {
     end,
     
     Bishop = function(piece, pickup)
-        local tiles = GetDiagonalLine(piece)
+        local tiles = GetDiagonalLines(piece)
 
         setColors(tiles, Colors.Line, pickup)
     end,
@@ -347,7 +347,7 @@ local GetMovement = {
     end,
     
     DivineSparrow = function(piece, pickup)
-        local innerRingTiles = GetInnerRingTiles(piece)
+        local innerRingTiles = GetAreaTiles(piece, 1)
         local tl_tiles = GetTileLine_TopLeft(piece)
         local br_tiles = GetTileLine_BottomRight(piece)
         local bl_tiles = GetTileLine_BottomLeft(piece)
@@ -379,16 +379,16 @@ local GetMovement = {
     end,
     
     DragonHorse = function(piece, pickup)
-        local cardinalTiles = GetInnerRingTiles(piece)
-        local diagonalTiles = GetDiagonalLine(piece)
+        local cardinalTiles = GetAreaTiles(piece, 1)
+        local diagonalTiles = GetDiagonalLines(piece)
 
         setColors(cardinalTiles, Colors.Slide, pickup)
         setColors(diagonalTiles, Colors.Line, pickup)
     end,
     
     DragonKing = function(piece, pickup)
-        local cardinalTiles = GetInnerRingTiles(piece)
-        local tiles = GetCrossLine(piece)
+        local cardinalTiles = GetAreaTiles(piece, 1)
+        local tiles = GetCrossLines(piece)
 
         setColors(cardinalTiles, Colors.Slide, pickup)
         setColors(tiles, Colors.Line, pickup)
@@ -601,8 +601,8 @@ local GetMovement = {
             GetRelativeTile(piece, 3, -3),
             GetRelativeTile(piece, 3, 0)
         }
-        local outerTiles = Get2ndOrderTiles(piece)
-        local innerTiles = GetInnerRingTiles(piece)
+        local outerTiles = GetAreaTiles(piece, 2)
+        local innerTiles = GetAreaTiles(piece, 1)
 
         setColors(leafTiles, Colors.Slide, pickup)
         setColors(outerTiles, Colors.Jump, pickup)
@@ -826,8 +826,8 @@ local GetMovement = {
     end,
     
     Lion = function(piece, pickup)
-        local outerTiles = Get2ndOrderTiles(piece)
-        local innerTiles = GetInnerRingTiles(piece)
+        local outerTiles = GetAreaTiles(piece, 2)
+        local innerTiles = GetAreaTiles(piece, 1)
 
         setColors(outerTiles, Colors.Jump, pickup)
         setColors(innerTiles, Colors.Eat, pickup)
@@ -1050,7 +1050,7 @@ local GetMovement = {
     end,
     
     Rook = function(piece, pickup)
-        local tiles = GetCrossLine(piece)
+        local tiles = GetCrossLines(piece)
 
         setColors(tiles, Colors.Line, pickup)
     end,
@@ -1317,7 +1317,7 @@ local GetMovement = {
     end,
     
     VermillionSparrow = function(piece, pickup)
-        local innerRingTiles = GetInnerRingTiles(piece)
+        local innerRingTiles = GetAreaTiles(piece, 1)
         local tl_tiles = GetTileLine_TopLeft(piece)
         local br_tiles = GetTileLine_BottomRight(piece)
 
@@ -1878,16 +1878,6 @@ end
 
 --------------------------------
 
-function GetInnerRingTiles(piece)
-    return GetAreaTiles(piece, 1)
-end
-
-
-function Get2ndOrderTiles(piece)
-    return GetAreaTiles(piece, 2)
-end
-
-
 function GetAreaTiles(piece, radius)
     radius = radius or 1
     local tiles = {}
@@ -1934,7 +1924,7 @@ end
 
 --------------------------------
 
-function GetDiagonalLine(piece)
+function GetDiagonalLines(piece)
     local totalTiles = {}
 
     local tl_tiles = GetTileLine_TopLeft(piece)
@@ -1952,7 +1942,7 @@ function GetDiagonalLine(piece)
 end
 
 
-function GetCrossLine(piece)
+function GetCrossLines(piece)
     local totalTiles = {}
 
     local topTiles = GetTileLine_Top(piece)
