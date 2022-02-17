@@ -16,7 +16,7 @@ local Colors = {
     , Jump     = { r=1, g=1, b=0, a=0.5 }
     , Jump2    = { r=0, g=1, b=0.5, a=0.5 }
     , Fly      = { r=1, g=0, b=1, a=0.5 }
-    , Eat      = { r=0, g=1, b=1, a=0.5 }
+    , Eat      = { r=0, g=1, b=0.5, a=0.5 }
 }
 
 local UNIT = 1.34
