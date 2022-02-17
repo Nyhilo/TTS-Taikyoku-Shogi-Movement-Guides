@@ -253,7 +253,9 @@ local GetMovement = {
     end,
     
     CatSword = function(piece, pickup)
+        local tiles = GetDiagonalTiles(piece, 1)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     Cavalier = function(piece, pickup)
@@ -407,7 +409,7 @@ local GetMovement = {
     EarthGeneral = function(piece, pickup)
         local tiles = GetEarthGeneralTiles(piece)
 
-        setColors(tiles, Color.Slide, pickup)
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     EasternBarbarian = function(piece, pickup)
@@ -614,7 +616,7 @@ local GetMovement = {
     GoBetween = function(piece, pickup)
         local tiles = GetEarthGeneralTiles(piece)
 
-        setColors(tiles, Color.Slide, pickup)
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     GoldChariot = function(piece, pickup)
@@ -990,7 +992,9 @@ local GetMovement = {
     end,
     
     RecliningDragon = function(piece, pickup)
+        local tiles = GetCrossTiles(piece, 1)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     ReverseChariot = function(piece, pickup)
@@ -1893,6 +1897,8 @@ function GetAreaTiles(piece, radius)
             table.insert(tiles, (GetRelativeTile(piece, i, j)))
         end
     end
+
+    return tiles
 end
 
 
@@ -1907,6 +1913,8 @@ function GetCrossTiles(piece, rank)
         -- Horizontal part of the cross
         table.insert(tiles, (GetRelativeTile(piece, 0, i)))
     end
+
+    return tiles
 end
 
 
@@ -1915,6 +1923,7 @@ function GetDiagonalTiles(piece, rank)
     local tiles = {}
 
     for i = -rank, rank do
+        -- TOOD: There is a bug here!!
         table.insert(tiles, GetRelativeTile(piece, i, i))
     end
 end
