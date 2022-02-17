@@ -1922,10 +1922,14 @@ function GetDiagonalTiles(piece, rank)
     rank = rank or 1
     local tiles = {}
 
-    for i = -rank, rank do
-        -- TOOD: There is a bug here!!
-        table.insert(tiles, GetRelativeTile(piece, i, i))
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, i, i)))
+        table.insert(tiles, (GetRelativeTile(piece, -i, i)))
+        table.insert(tiles, (GetRelativeTile(piece, i, -i)))
+        table.insert(tiles, (GetRelativeTile(piece, -i, -i)))
     end
+
+    return tiles
 end
 
 --------------------------------
