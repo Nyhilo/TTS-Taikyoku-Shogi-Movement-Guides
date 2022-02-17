@@ -183,7 +183,7 @@ local GetMovement = {
     end,
     
     Bishop = function(piece, pickup)
-        local tiles = GetDiagonalTiles(piece)
+        local tiles = GetDiagonalLine(piece)
 
         setColors(tiles, Colors.Line, pickup)
     end,
@@ -378,7 +378,7 @@ local GetMovement = {
     
     DragonHorse = function(piece, pickup)
         local cardinalTiles = GetInnerRingTiles(piece)
-        local diagonalTiles = GetDiagonalTiles(piece)
+        local diagonalTiles = GetDiagonalLine(piece)
 
         setColors(cardinalTiles, Colors.Slide, pickup)
         setColors(diagonalTiles, Colors.Line, pickup)
@@ -386,7 +386,7 @@ local GetMovement = {
     
     DragonKing = function(piece, pickup)
         local cardinalTiles = GetInnerRingTiles(piece)
-        local tiles = GetCrossTiles(piece)
+        local tiles = GetCrossLine(piece)
 
         setColors(cardinalTiles, Colors.Slide, pickup)
         setColors(tiles, Colors.Line, pickup)
@@ -405,7 +405,9 @@ local GetMovement = {
     end,
     
     EarthGeneral = function(piece, pickup)
+        local tiles = GetEarthGeneralTiles(piece)
 
+        setColors(tiles, Color.Slide, pickup)
     end,
     
     EasternBarbarian = function(piece, pickup)
@@ -610,7 +612,9 @@ local GetMovement = {
     end,
     
     GoBetween = function(piece, pickup)
+        local tiles = GetEarthGeneralTiles(piece)
 
+        setColors(tiles, Color.Slide, pickup)
     end,
     
     GoldChariot = function(piece, pickup)
@@ -894,7 +898,9 @@ local GetMovement = {
     end,
     
     OldRat = function(piece, pickup)
+        tiles = GetSwoopingOwlTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     OxGeneral = function(piece, pickup)
@@ -1040,7 +1046,7 @@ local GetMovement = {
     end,
     
     Rook = function(piece, pickup)
-        local tiles = GetCrossTiles(piece)
+        local tiles = GetCrossLine(piece)
 
         setColors(tiles, Colors.Line, pickup)
     end,
@@ -1209,7 +1215,9 @@ local GetMovement = {
     end,
     
     StoneGeneral = function(piece, pickup)
+        local tiles = GetStoneGeneralTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     StrongChariot = function(piece, pickup)
@@ -1225,7 +1233,9 @@ local GetMovement = {
     end,
     
     StruttingCrow = function(piece, pickup)
+        tiles = GetSwoopingOwlTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     SwallowsWings = function(piece, pickup)
@@ -1233,7 +1243,9 @@ local GetMovement = {
     end,
     
     SwoopingOwl = function(piece, pickup)
+        tiles = GetSwoopingOwlTiles(piece)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     SwordGenera = function(piece, pickup)
@@ -1863,35 +1875,53 @@ end
 --------------------------------
 
 function GetInnerRingTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, 1, 1),
-        GetRelativeTile(piece, 0, 1),
-        GetRelativeTile(piece, -1, 1),
-        GetRelativeTile(piece, -1, 0),
-        GetRelativeTile(piece, -1, -1),
-        GetRelativeTile(piece, 0, -1)
-    }
+    return GetAreaTiles(piece, 1)
 end
 
 
 function Get2ndOrderTiles(piece)
+    return GetAreaTiles(piece, 2)
+end
+
+
+function GetAreaTiles(piece, radius)
+    radius = radius or 1
     local tiles = {}
 
-    -- Returns a 5x5 grid of tiles centered on the piece
-    for i=-2, 2 do
-        for j=-2, 2 do
+    for i = -radius, radius do
+        for j = -radius, radius do
             table.insert(tiles, (GetRelativeTile(piece, i, j)))
         end
     end
+end
 
-    return tiles
+
+function GetCrossTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = -rank, rank do
+        -- Vertical part of the cross
+        table.insert(tiles, (GetRelativeTile(piece, i, 0)))
+
+        -- Horizontal part of the cross
+        table.insert(tiles, (GetRelativeTile(piece, 0, i)))
+    end
+end
+
+
+function GetDiagonalTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = -rank, rank do
+        table.insert(tiles, GetRelativeTile(piece, i, i))
+    end
 end
 
 --------------------------------
 
-function GetDiagonalTiles(piece)
+function GetDiagonalLine(piece)
     local totalTiles = {}
 
     local tl_tiles = GetTileLine_TopLeft(piece)
@@ -1909,7 +1939,7 @@ function GetDiagonalTiles(piece)
 end
 
 
-function GetCrossTiles(piece)
+function GetCrossLine(piece)
     local totalTiles = {}
 
     local topTiles = GetTileLine_Top(piece)
@@ -2150,6 +2180,20 @@ function GetTileGeneralTiles(piece)
     }
 end
 
+function GetEarthGeneralTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, -1, 0)
+    }
+end
+
+function GetStoneGeneralTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, -1),
+        GetRelativeTile(piece, 1, 1)
+    }
+end
+
 function GetCopperGeneralTiles(piece)
     return {
         GetRelativeTile(piece, 1, -1),
@@ -2185,6 +2229,14 @@ function GetGoldGeneralTiles(piece)
         GetRelativeTile(piece, 0, -1),
         GetRelativeTile(piece, 0, 1),
         GetRelativeTile(piece, -1, 0)
+    }
+end
+
+function GetSwoopingOwlTiles(piece)
+    return {
+        GetRelativeTile(piece, 1, 0),
+        GetRelativeTile(piece, -1, -1),
+        GetRelativeTile(piece, -1, 1)
     }
 end
 
