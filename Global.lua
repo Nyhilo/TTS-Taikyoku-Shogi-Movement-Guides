@@ -193,15 +193,41 @@ local GetMovement = {
     end,
     
     BlindBear = function(piece, pickup)
-
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, -1, 1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1)
+        }
+        
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     BlindDog = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, 0)
+        }
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     BlindMonkey = function(piece, pickup)
-
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, -1, 1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1)
+        }
+        
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     BlindTiger = function(piece, pickup)
@@ -283,7 +309,15 @@ local GetMovement = {
     end,
     
     ChineseCock = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, 0)
+        }
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     ChineseRiver = function(piece, pickup)
@@ -309,7 +343,14 @@ local GetMovement = {
     end,
     
     CoiledSerpent = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 0),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     CopperChariot = function(piece, pickup)
@@ -335,11 +376,31 @@ local GetMovement = {
     end,
     
     DarkSpirit = function(piece, pickup)
-
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, 0),
+            GetRelativeTile(piece, -1, 1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1)
+        }
+        
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     Deva = function(piece, pickup)
-
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, 0),
+            GetRelativeTile(piece, -1, 1),
+            GetRelativeTile(piece, 0, 1)
+        }
+        
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     DivineDragon = function(piece, pickup)
@@ -395,7 +456,17 @@ local GetMovement = {
     end,
     
     DrunkenElephant = function(piece, pickup)
-
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, 1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1)
+        }
+        
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     EarthChariot = function(piece, pickup)
@@ -425,11 +496,28 @@ local GetMovement = {
     end,
     
     EvilWolf = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, 0, 1)
+        }
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     FerociousLeopard = function(piece, pickup)
+        tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 0),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     FierceEagle = function(piece, pickup)
@@ -457,7 +545,14 @@ local GetMovement = {
     end,
     
     FlyingCock = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1)
+        }
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     FlyingCrocodile = function(piece, pickup)
@@ -884,7 +979,17 @@ local GetMovement = {
     end,
     
     NeighboringKing = function(piece, pickup)
-
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, 1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, 1, 1)
+        }
+        
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     NorthernBarbarian = function(piece, pickup)
@@ -896,7 +1001,15 @@ local GetMovement = {
     end,
     
     OldMonkey = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 0),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
     
     OldRat = function(piece, pickup)
