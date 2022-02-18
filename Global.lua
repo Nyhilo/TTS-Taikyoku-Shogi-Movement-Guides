@@ -193,40 +193,40 @@ local GetMovement = {
     end,
     
     BlindBear = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, -1, 1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1)
-        }
-        
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { 0, -1 },
+            { 1, -1 },
+            { -1, 1 },
+            { 0, 1 },
+            { 1, 1 },
+        })
+
         setColors(tiles, Colors.Slide, pickup)
     end,
     
     BlindDog = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1),
-            GetRelativeTile(piece, -1, 0)
-        }
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 1, -1 },
+            { 0, 1 },
+            { 1, 1 },
+            { -1, 0 },
+        })
 
         setColors(tiles, Colors.Slide, pickup)
     end,
     
     BlindMonkey = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, -1, 1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1)
-        }
-        
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { 0, -1 },
+            { 1, -1 },
+            { -1, 1 },
+            { 0, 1 },
+            { 1, 1 },
+        })
+
         setColors(tiles, Colors.Slide, pickup)
     end,
     
@@ -309,13 +309,13 @@ local GetMovement = {
     end,
     
     ChineseCock = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1),
-            GetRelativeTile(piece, -1, 0)
-        }
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 1, -1 },
+            { 0, 1 },
+            { 1, 1 },
+            { -1, 0 },
+        })
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -343,12 +343,12 @@ local GetMovement = {
     end,
     
     CoiledSerpent = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, 1, 0),
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, -1, 0),
-            GetRelativeTile(piece, -1, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { 1, 0 },
+            { -1, -1 },
+            { -1, 0 },
+            { -1, 1 },
+        })
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -376,29 +376,29 @@ local GetMovement = {
     end,
     
     DarkSpirit = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, 0),
-            GetRelativeTile(piece, -1, 0),
-            GetRelativeTile(piece, -1, 1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1)
-        }
-        
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { 0, -1 },
+            { 1, 0 },
+            { -1, 0 },
+            { -1, 1 },
+            { 0, 1 },
+            { 1, 1 },
+        })
+
         setColors(tiles, Colors.Slide, pickup)
     end,
     
     Deva = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 1, 0),
-            GetRelativeTile(piece, -1, 0),
-            GetRelativeTile(piece, -1, 1),
-            GetRelativeTile(piece, 0, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { 0, -1 },
+            { 1, -1 },
+            { 1, 0 },
+            { -1, 0 },
+            { -1, 1 },
+            { 0, 1 },
+        })
         
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -456,15 +456,15 @@ local GetMovement = {
     end,
     
     DrunkenElephant = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 1, 0),
-            GetRelativeTile(piece, -1, 1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { 0, -1 },
+            { 1, -1 },
+            { 1, 0 },
+            { -1, 1 },
+            { 0, 1 },
+            { 1, 1 },
+        })
         
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -496,26 +496,26 @@ local GetMovement = {
     end,
     
     EvilWolf = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 1, 0),
-            GetRelativeTile(piece, 1, 1),
-            GetRelativeTile(piece, 0, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 1, -1 },
+            { 1, 0 },
+            { 1, 1 },
+            { 0, 1 },
+        })
 
         setColors(tiles, Colors.Slide, pickup)
     end,
     
     FerociousLeopard = function(piece, pickup)
-        tiles = {
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 1, 0),
-            GetRelativeTile(piece, 1, 1),
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, -1, 0),
-            GetRelativeTile(piece, -1, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 1, 0 },
+            { 1, 1 },
+            { -1, -1 },
+            { -1, 0 },
+            { -1, 1 },
+        })
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -545,12 +545,12 @@ local GetMovement = {
     end,
     
     FlyingCock = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 1, -1 },
+            { 0, 1 },
+            { 1, 1 },
+        })
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -686,16 +686,17 @@ local GetMovement = {
     end,
     
     FuriousFiend = function(piece, pickup)
-        local leafTiles = {
-            GetRelativeTile(piece, 3, 3),
-            GetRelativeTile(piece, 0, 3),
-            GetRelativeTile(piece, -3, 3),
-            GetRelativeTile(piece, -3, 0),
-            GetRelativeTile(piece, -3, -3),
-            GetRelativeTile(piece, 0, -3),
-            GetRelativeTile(piece, 3, -3),
-            GetRelativeTile(piece, 3, 0)
-        }
+        local leafTiles = GetTileSet(pieces, {
+            { 3, 3 },
+            { 0, 3 },
+            { -3, 3 },
+            { -3, 0 },
+            { -3, -3 },
+            { 0, -3 },
+            { 3, -3 },
+            { 3, 0 },
+        })
+
         local outerTiles = GetAreaTiles(piece, 2)
         local innerTiles = GetAreaTiles(piece, 1)
 
@@ -979,15 +980,15 @@ local GetMovement = {
     end,
     
     NeighboringKing = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, 0, -1),
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 1, 0),
-            GetRelativeTile(piece, -1, 1),
-            GetRelativeTile(piece, 0, 1),
-            GetRelativeTile(piece, 1, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { 0, -1 },
+            { 1, -1 },
+            { 1, 0 },
+            { -1, 1 },
+            { 0, 1 },
+            { 1, 1 },
+        })
         
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -1001,13 +1002,13 @@ local GetMovement = {
     end,
     
     OldMonkey = function(piece, pickup)
-        local tiles = {
-            GetRelativeTile(piece, 1, -1),
-            GetRelativeTile(piece, 1, 1),
-            GetRelativeTile(piece, -1, -1),
-            GetRelativeTile(piece, -1, 0),
-            GetRelativeTile(piece, -1, 1)
-        }
+        local tiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 1, 1 },
+            { -1, -1 },
+            { -1, 0 },
+            { -1, 1 },
+        })
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -1991,6 +1992,27 @@ end
 
 --------------------------------
 
+--[[
+    coordinates is a table expected in the form of:
+    {
+        { z1, x1 }
+        { z2, x2 }
+        { etc... }
+    }
+]]--
+function GetTileSet(piece, coordinates)
+    local tiles = {}
+
+    for _, coord in ipairs(coordinates) do
+        local z = coord[1]
+        local x = coord[2]
+
+        table.insert(tiles, (GetRelativeTile(piece, z, x)))
+    end
+
+    return tiles
+end
+
 function GetAreaTiles(piece, radius)
     radius = radius or 1
     local tiles = {}
@@ -2289,71 +2311,71 @@ end
 --------------------------------
 
 function GetTileGeneralTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 1),
-        GetRelativeTile(piece, -1, 0)
-    }
+    return GetTileSet(piece, {
+        { 1, -1 },
+        { 1, 1 },
+        { -1, 0 },
+    })
 end
 
 function GetEarthGeneralTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, -1, 0)
-    }
+    return GetTileSet(piece, {
+        { 1, 0 },
+        { -1, 0 },
+    })
 end
 
 function GetStoneGeneralTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 1)
-    }
+    return GetTileSet(piece, {
+        { 1, -1 },
+        { 1, 1 },
+    })
 end
 
 function GetCopperGeneralTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, 1, 1),
-        GetRelativeTile(piece, -1, 0)
-    }
+    return GetTileSet(piece, {
+        { 1, -1 },
+        { 1, 0 },
+        { 1, 1 },
+        { -1, 0 },
+    })
 end
 
 function GetIronGeneralTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, 1, 1)
-    }
+    return GetTileSet(piece, {
+        { 1, -1 },
+        { 1, 0 },
+        { 1, 1 },
+    })
 end
 
 function GetSilverGeneralTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, 1, 1),
-        GetRelativeTile(piece, -1, -1),
-        GetRelativeTile(piece, -1, 1)
-    }
+    return GetTileSet(piece, {
+        { 1, -1 },
+        { 1, 0 },
+        { 1, 1 },
+        { -1, -1 },
+        { -1, 1 },
+    })
 end
 
 function GetGoldGeneralTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, -1),
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, 1, 1),
-        GetRelativeTile(piece, 0, -1),
-        GetRelativeTile(piece, 0, 1),
-        GetRelativeTile(piece, -1, 0)
-    }
+    return GetTileSet(piece, {
+        { 1, -1 },
+        { 1, 0 },
+        { 1, 1 },
+        { 0, -1 },
+        { 0, 1 },
+        { -1, 0 },
+    })
 end
 
 function GetSwoopingOwlTiles(piece)
-    return {
-        GetRelativeTile(piece, 1, 0),
-        GetRelativeTile(piece, -1, -1),
-        GetRelativeTile(piece, -1, 1)
-    }
+    return GetTileSet(piece, {
+        { 1, 0 },
+        { -1, -1 },
+        { -1, 1 },
+    })
 end
 
 
