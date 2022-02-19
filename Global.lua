@@ -294,7 +294,18 @@ local GetMovement = {
     end,
 
     CaptiveCadet = function(piece, pickup)
+        local tiles = GetKingTiles(piece, 3)
+        local maskTiles = GetTileSet(piece, {
+            { -1, 0 },
+            { -2, 0 },
+            { -3, 0 },
+        })
 
+        setColors(tiles, Colors.Slide, pickup)
+
+        -- Is this cheating?
+        -- nah.
+        setColors(maskTiles, Colors.Reset, pickup)
     end,
 
     CaptiveOfficer = function(piece, pickup)
@@ -862,7 +873,9 @@ local GetMovement = {
     end,
 
     GuardianoftheGods = function(piece, pickup)
+        local tiles = GetCrossTiles(piece, 3)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
 
     HeavenlyHorse = function(piece, pickup)
@@ -1738,7 +1751,9 @@ local GetMovement = {
     end,
 
     Wrestler = function(piece, pickup)
+        local tiles = GetDiagonalTiles(piece, 3)
 
+        setColors(tiles, Colors.Slide, pickup)
     end,
 
     Yaksha = function(piece, pickup)
