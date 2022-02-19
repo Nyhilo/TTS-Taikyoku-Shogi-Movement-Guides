@@ -388,7 +388,14 @@ local GetMovement = {
     end,
 
     ChickenGeneral = function(piece, pickup)
+        local ftiles = GetUpTiles(piece, 4)
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(piece, Colors.Slide, pickup)
+        SetColors(piece, Colors.Slide, pickup)
     end,
 
     ChineseCock = function(piece, pickup)
@@ -1929,7 +1936,17 @@ local GetMovement = {
     end,
 
     Yaksha = function(piece, pickup)
+        local rtiles = GetRightTiles(piece, 3)
+        local ltiles = GetRightTiles(piece, 3)
+        local tiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 1, 1 },
+            { -1, 0 },
+        })
 
+        SetColors(rtiles, Colors.Slide, pickup)
+        SetColors(ltiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     YoungBird = function(piece, pickup)
