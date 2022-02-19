@@ -186,7 +186,20 @@ local GetMovement = {
     end,
 
     BeastOfficer = function(piece, pickup)
+        local tiles = GetKingTiles(piece, 3)
+        local maskTiles = GetTileSet(piece, {
+            { 0, -3 },
+            { 0, 3 },
 
+            { -1, 0 },
+            { -2, 0 },
+            { -3, 0 },
+        })
+
+        SetColors(tiles, Colors.Slide, pickup)
+
+        -- Mask out tiles
+        SetColors(maskTiles, Colors.Reset, pickup)
     end,
 
     BirdOfParadise = function(piece, pickup)
@@ -331,7 +344,21 @@ local GetMovement = {
     end,
 
     CaptiveOfficer = function(piece, pickup)
+        local tiles = GetKingTiles(piece, 3)
+        local maskTiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 0, -3 },
+            { 0, 3 },
 
+            { -1, 0 },
+            { -2, 0 },
+            { -3, 0 },
+        })
+
+        SetColors(tiles, Colors.Slide, pickup)
+
+        -- Mask out tiles
+        SetColors(maskTiles, Colors.Reset, pickup)
     end,
 
     CatSword = function(piece, pickup)
