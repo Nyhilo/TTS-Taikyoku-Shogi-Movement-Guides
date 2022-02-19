@@ -1102,7 +1102,7 @@ local GetMovement = {
     end,
 
     OldRat = function(piece, pickup)
-        tiles = GetSwoopingOwlTiles(piece)
+        local tiles = GetSwoopingOwlTiles(piece)
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -1488,7 +1488,7 @@ local GetMovement = {
     end,
 
     StruttingCrow = function(piece, pickup)
-        tiles = GetSwoopingOwlTiles(piece)
+        local tiles = GetSwoopingOwlTiles(piece)
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -1498,7 +1498,7 @@ local GetMovement = {
     end,
 
     SwoopingOwl = function(piece, pickup)
-        tiles = GetSwoopingOwlTiles(piece)
+        local tiles = GetSwoopingOwlTiles(piece)
 
         setColors(tiles, Colors.Slide, pickup)
     end,
@@ -1518,10 +1518,6 @@ local GetMovement = {
     end,
 
     Tengu = function(piece, pickup)
-
-    end,
-
-    ThunderRunner = function(piece, pickup)
 
     end,
 
@@ -1552,10 +1548,6 @@ local GetMovement = {
     end,
 
     TurtleDove = function(piece, pickup)
-
-    end,
-
-    TurtleSnake = function(piece, pickup)
 
     end,
 
@@ -1727,7 +1719,7 @@ local GetMovement = {
     end,
 
     WoodGeneral = function(piece, pickup)
-        local tiles = GetTIleSet(piece, {
+        local tiles = GetTileSet(piece, {
             { 2, -2 },
             { 1, -1 },
             { 2, 2 },
@@ -2019,14 +2011,12 @@ local MovementTable = {
     ['Teaching King'] = GetMovement.TeachingKing,
     ['Tengu'] = GetMovement.Tengu,
     ['Thunder Runner'] = GetMovement.ThunderRunner,
-    ['Thunder Runner '] = GetMovement.ThunderRunner,
     ['Tiger Soldier'] = GetMovement.TigerSoldier,
     ['Tile Chariot'] = GetMovement.TileChariot,
     ['Tile General'] = GetMovement.TileGeneral,
     ['Treacherous Fox'] = GetMovement.TreacherousFox,
     ['Treasure Turtle'] = GetMovement.TreasureTurtle,
     ['Turtle Dove'] = GetMovement.TurtleDove,
-    ['Turtle Snake'] = GetMovement.TurtleSnake,
     ['Turtle-Snake'] = GetMovement.TurtleSnake,
     ['Venomous Wolf'] = GetMovement.VenomousWolf,
     ['Vermillion Sparrow'] = GetMovement.VermillionSparrow,
