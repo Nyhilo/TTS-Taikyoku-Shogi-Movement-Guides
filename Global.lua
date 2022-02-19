@@ -98,13 +98,13 @@ end
 
 function onObjectPickUp(player_color, object)
     if object.hasTag(PlayingPieceTag) then
-        handlePieceMovement(object, true)
+        HandlePieceMovement(object, true)
     end
 end
 
 function onObjectDrop(player_color, object)
     if object.hasTag(PlayingPieceTag) then
-        handlePieceMovement(object, false)
+        HandlePieceMovement(object, false)
     end
 end
 
@@ -153,7 +153,7 @@ local GetMovement = {
             { 2, 2 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BearSoldier = function(piece, pickup)
@@ -163,7 +163,7 @@ local GetMovement = {
     BearsEyes = function(piece, pickup)
         local tiles = GetAreaTiles(piece, 1)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BeastBird = function(piece, pickup)
@@ -181,8 +181,8 @@ local GetMovement = {
             { 0, 2 },
         })
 
-        setColors(dtiles, Colors.Slide, pickup)
-        setColors(ctiles, Colors.Slide, pickup)
+        SetColors(dtiles, Colors.Slide, pickup)
+        SetColors(ctiles, Colors.Slide, pickup)
     end,
 
     BeastOfficer = function(piece, pickup)
@@ -192,13 +192,13 @@ local GetMovement = {
     BirdOfParadise = function(piece, pickup)
         local tiles = GetMultiGeneralTiles(piece)
 
-        setColors(tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     Bishop = function(piece, pickup)
         local tiles = GetDiagonalLines(piece)
 
-        setColors(tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     BishopGeneral = function(piece, pickup)
@@ -215,7 +215,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BlindDog = function(piece, pickup)
@@ -227,7 +227,7 @@ local GetMovement = {
             { -1, 0 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BlindMonkey = function(piece, pickup)
@@ -240,7 +240,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BlindTiger = function(piece, pickup)
@@ -254,7 +254,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BlueDragon = function(piece, pickup)
@@ -301,11 +301,11 @@ local GetMovement = {
             { -3, 0 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
 
         -- Is this cheating?
         -- nah.
-        setColors(maskTiles, Colors.Reset, pickup)
+        SetColors(maskTiles, Colors.Reset, pickup)
     end,
 
     CaptiveOfficer = function(piece, pickup)
@@ -315,7 +315,7 @@ local GetMovement = {
     CatSword = function(piece, pickup)
         local tiles = GetDiagonalTiles(piece, 1)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Cavalier = function(piece, pickup)
@@ -351,7 +351,7 @@ local GetMovement = {
             { -1, 0 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ChineseRiver = function(piece, pickup)
@@ -361,7 +361,7 @@ local GetMovement = {
     ClimbingMonkey = function(piece, pickup)
         local tiles = GetCopperGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     CloudDragon = function(piece, pickup)
@@ -384,7 +384,7 @@ local GetMovement = {
             { -1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     CopperChariot = function(piece, pickup)
@@ -398,7 +398,7 @@ local GetMovement = {
     CopperGeneral = function(piece, pickup)
         local tiles = GetCopperGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     CrossbowGeneral = function(piece, pickup)
@@ -420,7 +420,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Deva = function(piece, pickup)
@@ -434,7 +434,7 @@ local GetMovement = {
             { 0, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     DivineDragon = function(piece, pickup)
@@ -447,12 +447,12 @@ local GetMovement = {
         local br_tiles = GetTileLine_BottomRight(piece)
         local bl_tiles = GetTileLine_BottomLeft(piece)
 
-        setColors(innerRingTiles, Colors.Slide, pickup)
+        SetColors(innerRingTiles, Colors.Slide, pickup)
 
         -- Overwrites some of the inner ring tiles
-        setColors(tl_tiles, Colors.Line, pickup)
-        setColors(br_tiles, Colors.Line, pickup)
-        setColors(bl_tiles, Colors.Line, pickup)
+        SetColors(tl_tiles, Colors.Line, pickup)
+        SetColors(br_tiles, Colors.Line, pickup)
+        SetColors(bl_tiles, Colors.Line, pickup)
     end,
 
     DivineTiger = function(piece, pickup)
@@ -466,29 +466,29 @@ local GetMovement = {
     Dog = function(piece, pickup)
         local tiles = GetIronGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Donkey = function(piece, pickup)
         local tiles = GetCrossTiles(piece, 2)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     DragonHorse = function(piece, pickup)
         local cardinalTiles = GetAreaTiles(piece, 1)
         local diagonalTiles = GetDiagonalLines(piece)
 
-        setColors(cardinalTiles, Colors.Slide, pickup)
-        setColors(diagonalTiles, Colors.Line, pickup)
+        SetColors(cardinalTiles, Colors.Slide, pickup)
+        SetColors(diagonalTiles, Colors.Line, pickup)
     end,
 
     DragonKing = function(piece, pickup)
         local cardinalTiles = GetAreaTiles(piece, 1)
         local tiles = GetCrossLines(piece)
 
-        setColors(cardinalTiles, Colors.Slide, pickup)
-        setColors(tiles, Colors.Line, pickup)
+        SetColors(cardinalTiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     DrunkenElephant = function(piece, pickup)
@@ -502,7 +502,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     EarthChariot = function(piece, pickup)
@@ -516,7 +516,7 @@ local GetMovement = {
     EarthGeneral = function(piece, pickup)
         local tiles = GetEarthGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     EasternBarbarian = function(piece, pickup)
@@ -531,7 +531,7 @@ local GetMovement = {
             { 0, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ElephantKing = function(piece, pickup)
@@ -541,7 +541,7 @@ local GetMovement = {
     EnchantedBadger = function(piece, pickup)
         local tiles = GetCrossTiles(piece, 2)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     EvilWolf = function(piece, pickup)
@@ -553,7 +553,7 @@ local GetMovement = {
             { 0, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FerociousLeopard = function(piece, pickup)
@@ -566,7 +566,7 @@ local GetMovement = {
             { -1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FierceEagle = function(piece, pickup)
@@ -584,7 +584,7 @@ local GetMovement = {
             { -2, 2 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FireDemon = function(piece, pickup)
@@ -615,7 +615,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FlyingCrocodile = function(piece, pickup)
@@ -633,13 +633,13 @@ local GetMovement = {
     FlyingGoose = function(piece, pickup)
         local tiles = GetCopperGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FlyingHorse = function(piece, pickup)
         local tiles = GetDiagonalTiles(piece, 2)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FlyingOx = function(piece, pickup)
@@ -661,7 +661,7 @@ local GetMovement = {
     FragrantElephant = function(piece, pickup)
         local tiles = GetKingTiles(piece, 2)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeBaku = function(piece, pickup)
@@ -767,9 +767,9 @@ local GetMovement = {
         local outerTiles = GetAreaTiles(piece, 2)
         local innerTiles = GetAreaTiles(piece, 1)
 
-        setColors(leafTiles, Colors.Slide, pickup)
-        setColors(outerTiles, Colors.Jump, pickup)
-        setColors(innerTiles, Colors.Eat, pickup)
+        SetColors(leafTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
+        SetColors(innerTiles, Colors.Eat, pickup)
     end,
 
     GlidingSwallow = function(piece, pickup)
@@ -779,7 +779,7 @@ local GetMovement = {
     GoBetween = function(piece, pickup)
         local tiles = GetEarthGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GoldChariot = function(piece, pickup)
@@ -789,7 +789,7 @@ local GetMovement = {
     GoldGeneral = function(piece, pickup)
         local tiles = GetGoldGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GoldenBird = function(piece, pickup)
@@ -875,7 +875,7 @@ local GetMovement = {
     GuardianoftheGods = function(piece, pickup)
         local tiles = GetCrossTiles(piece, 3)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     HeavenlyHorse = function(piece, pickup)
@@ -885,7 +885,7 @@ local GetMovement = {
     HeavenlyTetrarch = function(piece, pickup)
         local tiles = GetKingTiles(piece, 4)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     HeavenlyTetrarchKing = function(piece, pickup)
@@ -919,13 +919,13 @@ local GetMovement = {
     IronGeneral = function(piece, pickup)
         local tiles = GetIronGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     King = function(piece, pickup)
         local tiles = GetKingTiles(piece, 2)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     KingKing = function(piece, pickup)
@@ -947,7 +947,7 @@ local GetMovement = {
     Lance = function(piece, pickup)
         local tiles = GetTileLine_Top(piece)
 
-        setColors(tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     LeftArmy = function(piece, pickup)
@@ -969,7 +969,7 @@ local GetMovement = {
     LeftGeneral = function(piece, pickup)
         local tiles = GetAreaTiles(piece, 1)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     LeftIronChariot = function(piece, pickup)
@@ -987,7 +987,7 @@ local GetMovement = {
     LeopardKing = function(piece, pickup)
         local tiles = GetKingTiles(piece, 5)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     LeopardSoldier = function(piece, pickup)
@@ -1002,8 +1002,8 @@ local GetMovement = {
         local outerTiles = GetAreaTiles(piece, 2)
         local innerTiles = GetAreaTiles(piece, 1)
 
-        setColors(outerTiles, Colors.Jump, pickup)
-        setColors(innerTiles, Colors.Eat, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
+        SetColors(innerTiles, Colors.Eat, pickup)
     end,
 
     LionDog = function(piece, pickup)
@@ -1053,7 +1053,7 @@ local GetMovement = {
     MultiGeneral = function(piece, pickup)
         local tiles = GetMultiGeneralTiles(piece)
 
-        setColors(tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     NeighboringKing = function(piece, pickup)
@@ -1067,7 +1067,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     NorthernBarbarian = function(piece, pickup)
@@ -1082,7 +1082,7 @@ local GetMovement = {
             { -1, 0 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     OldKite = function(piece, pickup)
@@ -1099,7 +1099,7 @@ local GetMovement = {
             { -2, 2 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     OldMonkey = function(piece, pickup)
@@ -1111,13 +1111,13 @@ local GetMovement = {
             { -1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     OldRat = function(piece, pickup)
         local tiles = GetSwoopingOwlTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     OxGeneral = function(piece, pickup)
@@ -1135,7 +1135,7 @@ local GetMovement = {
     Pawn = function(piece, pickup)
         local tile = GetRelativeTile(piece, 1, 0)
 
-        setColor(tile, Colors.Slide, pickup)
+        SetColor(tile, Colors.Slide, pickup)
     end,
 
     PeacefulMountain = function(piece, pickup)
@@ -1179,7 +1179,7 @@ local GetMovement = {
             { -1, 0 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     PrancingStag = function(piece, pickup)
@@ -1194,13 +1194,13 @@ local GetMovement = {
             { -1, 0 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Prince = function(piece, pickup)
         local tiles = GetAreaTiles(piece, 1)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     PupGeneral = function(piece, pickup)
@@ -1234,7 +1234,7 @@ local GetMovement = {
     RecliningDragon = function(piece, pickup)
         local tiles = GetCrossTiles(piece, 1)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ReverseChariot = function(piece, pickup)
@@ -1260,7 +1260,7 @@ local GetMovement = {
     RightGeneral = function(piece, pickup)
         local tiles = GetAreaTiles(piece, 1)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RightIronChariot = function(piece, pickup)
@@ -1294,7 +1294,7 @@ local GetMovement = {
     Rook = function(piece, pickup)
         local tiles = GetCrossLines(piece)
 
-        setColors(tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     RookGeneral = function(piece, pickup)
@@ -1369,7 +1369,7 @@ local GetMovement = {
             { -1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RushingBoa = function(piece, pickup)
@@ -1398,11 +1398,11 @@ local GetMovement = {
         local frontTile = GetRelativeTile(piece, 1, 0)
         local backTile = GetRelativeTile(piece, -1, 0)
 
-        setColors(leftTiles, Colors.Line, pickup)
-        setColors(rightTiles, Colors.Line, pickup)
+        SetColors(leftTiles, Colors.Line, pickup)
+        SetColors(rightTiles, Colors.Line, pickup)
 
-        setColor(frontTile, Colors.Slide, pickup)
-        setColor(backTile, Colors.Slide, pickup)
+        SetColor(frontTile, Colors.Slide, pickup)
+        SetColor(backTile, Colors.Slide, pickup)
     end,
 
     SideOx = function(piece, pickup)
@@ -1432,7 +1432,7 @@ local GetMovement = {
     SilverGeneral = function(piece, pickup)
         local tiles = GetSilverGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SilverRabbit = function(piece, pickup)
@@ -1459,7 +1459,7 @@ local GetMovement = {
             { -1, 0 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SpearGeneral = function(piece, pickup)
@@ -1485,7 +1485,7 @@ local GetMovement = {
     StoneGeneral = function(piece, pickup)
         local tiles = GetStoneGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     StrongChariot = function(piece, pickup)
@@ -1503,7 +1503,7 @@ local GetMovement = {
     StruttingCrow = function(piece, pickup)
         local tiles = GetSwoopingOwlTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SwallowsWings = function(piece, pickup)
@@ -1513,7 +1513,7 @@ local GetMovement = {
     SwoopingOwl = function(piece, pickup)
         local tiles = GetSwoopingOwlTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SwordGenera = function(piece, pickup)
@@ -1523,7 +1523,7 @@ local GetMovement = {
     SwordSoldier = function(piece, pickup)
         local tiles = GetTileGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     TeachingKing = function(piece, pickup)
@@ -1549,7 +1549,7 @@ local GetMovement = {
     TileGeneral = function(piece, pickup)
         local tiles = GetTileGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     TreacherousFox = function(piece, pickup)
@@ -1571,7 +1571,7 @@ local GetMovement = {
     VenomousWolf = function(piece, pickup)
         local tiles = GetAreaTiles(piece, 1)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     VermillionSparrow = function(piece, pickup)
@@ -1579,11 +1579,11 @@ local GetMovement = {
         local tl_tiles = GetTileLine_TopLeft(piece)
         local br_tiles = GetTileLine_BottomRight(piece)
 
-        setColors(innerRingTiles, Colors.Slide, pickup)
+        SetColors(innerRingTiles, Colors.Slide, pickup)
 
         -- Overwrites some of the inner ring tiles
-        setColors(tl_tiles, Colors.Line, pickup)
-        setColors(br_tiles, Colors.Line, pickup)
+        SetColors(tl_tiles, Colors.Line, pickup)
+        SetColors(br_tiles, Colors.Line, pickup)
     end,
 
     VerticalBear = function(piece, pickup)
@@ -1633,7 +1633,7 @@ local GetMovement = {
             { 2, 2 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ViolentDragon = function(piece, pickup)
@@ -1647,7 +1647,7 @@ local GetMovement = {
     ViolentStag = function(piece, pickup)
         local tiles = GetSilverGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ViolentWind = function(piece, pickup)
@@ -1657,7 +1657,7 @@ local GetMovement = {
     ViolentWolf = function(piece, pickup)
         local tiles = GetGoldGeneralTiles(piece)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WalkingHeron = function(piece, pickup)
@@ -1688,7 +1688,7 @@ local GetMovement = {
             { 0, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Whale = function(piece, pickup)
@@ -1698,13 +1698,13 @@ local GetMovement = {
     WhiteElephant = function(piece, pickup)
         local tiles = GetKingTiles(piece, 2)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WhiteHorse = function(piece, pickup)
         local tiles = GetMultiGeneralTiles(piece)
 
-        setColors(tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     WhiteTiger = function(piece, pickup)
@@ -1739,7 +1739,7 @@ local GetMovement = {
             { 1, 1 },
         })
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WoodenDove = function(piece, pickup)
@@ -1753,7 +1753,7 @@ local GetMovement = {
     Wrestler = function(piece, pickup)
         local tiles = GetDiagonalTiles(piece, 3)
 
-        setColors(tiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Yaksha = function(piece, pickup)
@@ -2073,7 +2073,7 @@ local MovementTable = {
 }
 
 
-function handlePieceMovement(piece, pickup)
+function HandlePieceMovement(piece, pickup)
     local parts = piece.getGMNotes():splitTrim('/')
     local name = parts[1]
     if piece.is_face_down and parts[2] ~= nil then name = parts[2] end
@@ -2090,10 +2090,10 @@ function handlePieceMovement(piece, pickup)
 
     if tile == nil then return end
 
-    setColor(tile, Colors.Place, pickup)
+    SetColor(tile, Colors.Place, pickup)
 end
 
-function setColors(tiles, color, pickup)
+function SetColors(tiles, color, pickup)
     if not pickup then color = Colors.Reset end
 
     for _, tile in ipairs(tiles) do
@@ -2103,7 +2103,7 @@ function setColors(tiles, color, pickup)
     end
 end
 
-function setColor(tile, color, pickup)
+function SetColor(tile, color, pickup)
     if tile == nil then return end
 
     if not pickup then color = Colors.Reset end
