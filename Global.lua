@@ -723,7 +723,16 @@ local GetMovement = {
     end,
 
     FlyingOx = function(piece, pickup)
+        local tiles = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     FlyingStag = function(piece, pickup)
@@ -749,7 +758,16 @@ local GetMovement = {
     end,
 
     FreeBear = function(piece, pickup)
+        local tiles = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     FreeBird = function(piece, pickup)
@@ -793,7 +811,16 @@ local GetMovement = {
     end,
 
     FreeLeopard = function(piece, pickup)
+        local tiles = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     FreeOx = function(piece, pickup)
@@ -962,7 +989,16 @@ local GetMovement = {
     end,
 
     GreatWhale = function(piece, pickup)
+        local tiles = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     GuardianoftheGods = function(piece, pickup)
@@ -1490,7 +1526,15 @@ local GetMovement = {
     end,
 
     RunningLeopard = function(piece, pickup)
+        local tiles = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Right(piece),
+        })
 
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     RunningOx = function(piece, pickup)
@@ -1745,7 +1789,16 @@ local GetMovement = {
     end,
 
     TreacherousFox = function(piece, pickup)
+        local tiles = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     TreasureTurtle = function(piece, pickup)
@@ -1951,7 +2004,15 @@ local GetMovement = {
     end,
 
     WizardStork = function(piece, pickup)
+        local tiles = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece)
+        })
 
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     WoodChariot = function(piece, pickup)
