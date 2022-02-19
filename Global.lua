@@ -266,7 +266,17 @@ local GetMovement = {
     end,
 
     BuddhistDevil = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 3)
+        local rwing = GetUpRightDiagonalTiles(piece, 3)
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 0, 1 },
+            { -1, 0 },
+        })
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BuddhistSpirit = function(piece, pickup)
@@ -282,7 +292,19 @@ local GetMovement = {
     end,
 
     BurningSoldier = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 5)
+        local rwing = GetUpRightDiagonalTiles(piece, 5)
+        local utiles = GetUpTiles(piece, 7)
+        local ltiles = GetLeftTiles(piece, 3)
+        local rtiles = GetRightTiles(piece, 3)
+        local btile = GetRelativeTile(piece, -1, 0)
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(utiles, Colors.Slide, pickup)
+        SetColors(ltiles, Colors.Slide, pickup)
+        SetColors(rtiles, Colors.Slide, pickup)
+        SetColor(btile, Colors.Slide, pickup)
     end,
 
     Capricorn = function(piece, pickup)
@@ -406,7 +428,19 @@ local GetMovement = {
     end,
 
     CrossbowSoldier = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 3)
+        local rwing = GetUpRightDiagonalTiles(piece, 3)
+        local utiles = GetUpTiles(piece, 5)
+        local ltiles = GetLeftTiles(piece, 3)
+        local rtiles = GetRightTiles(piece, 3)
+        local btile = GetRelativeTile(piece, -1, 0)
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(utiles, Colors.Slide, pickup)
+        SetColors(ltiles, Colors.Slide, pickup)
+        SetColors(rtiles, Colors.Slide, pickup)
+        SetColor(btile, Colors.Slide, pickup)
     end,
 
     DarkSpirit = function(piece, pickup)
@@ -1059,11 +1093,36 @@ local GetMovement = {
     end,
 
     MountainGeneral = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 3)
+        local rwing = GetUpRightDiagonalTiles(piece, 3)
+        local tiles = GetTileSet(piece, {
+            { 1, 0 },
+            { -1, 0 },
+        })
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     MountainStag = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 3)
+        local rwing = GetUpRightDiagonalTiles(piece, 3)
+        local tiles = GetTileSet(piece, {
+            { 1, 0 },
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, 0 },
+            { -2, 0 },
+            { -3, 0 },
+            { -4, 0 },
+        })
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     MountainWitch = function(piece, pickup)
@@ -1184,7 +1243,16 @@ local GetMovement = {
     end,
 
     PigGeneral = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 4)
+        local rwing = GetUpRightDiagonalTiles(piece, 4)
+        local tiles = GetTileSet(piece, {
+            { -1, 0 },
+            { -2, 0 },
+        })
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     PlayfulCockatoo = function(piece, pickup)
@@ -1554,8 +1622,19 @@ local GetMovement = {
         SetColors(tiles, Colors.Slide, pickup)
     end,
 
-    SwordGenera = function(piece, pickup)
+    SwordGeneral = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 3)
+        local rwing = GetUpRightDiagonalTiles(piece, 3)
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 2, 0 },
+            { 1, 0 },
+            { -1, 0 },
+        })
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SwordSoldier = function(piece, pickup)
@@ -1599,7 +1678,17 @@ local GetMovement = {
     end,
 
     TurtleDove = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 5)
+        local rwing = GetUpRightDiagonalTiles(piece, 5)
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { -1, 0 },
+            { 0, 1 },
+        })
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     TurtleSnake = function(piece, pickup)
@@ -1711,7 +1800,16 @@ local GetMovement = {
     end,
 
     WaterGeneral = function(piece, pickup)
+        local lwing = GetUpLeftDiagonalTiles(piece, 3)
+        local rwing = GetUpRightDiagonalTiles(piece, 3)
+        local tiles = GetTileSet(piece, {
+            { 1, 0 },
+            { -1, 0 },
+        })
 
+        SetColors(lwing, Colors.Slide, pickup)
+        SetColors(rwing, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WesternBarbarian = function(piece, pickup)
@@ -2068,7 +2166,7 @@ local MovementTable = {
     ['Strutting Crow'] = GetMovement.StruttingCrow,
     ['Swallow\'s Wings'] = GetMovement.SwallowsWings,
     ['Swooping Owl'] = GetMovement.SwoopingOwl,
-    ['Sword Genera'] = GetMovement.SwordGenera,
+    ['Sword General'] = GetMovement.SwordGeneral,
     ['Sword Soldier'] = GetMovement.SwordSoldier,
     ['Teaching King'] = GetMovement.TeachingKing,
     ['Tengu'] = GetMovement.Tengu,
@@ -2268,6 +2366,94 @@ function GetDiagonalTiles(piece, rank)
         table.insert(tiles, (GetRelativeTile(piece, -i, i)))
         table.insert(tiles, (GetRelativeTile(piece, i, -i)))
         table.insert(tiles, (GetRelativeTile(piece, -i, -i)))
+    end
+
+    return tiles
+end
+
+function GetUpTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, i, 0)))
+    end
+
+    return tiles
+end
+
+function GetDownTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, -i, 0)))
+    end
+
+    return tiles
+end
+
+function GetLeftTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, 0, -i)))
+    end
+
+    return tiles
+end
+
+function GetRightTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, 0, i)))
+    end
+
+    return tiles
+end
+
+function GetUpLeftDiagonalTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, i, -i)))
+    end
+
+    return tiles
+end
+
+function GetUpRightDiagonalTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, i, i)))
+    end
+
+    return tiles
+end
+
+function GetDownLeftDiagonalTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, -i, -i)))
+    end
+
+    return tiles
+end
+
+function GetDownRightDiagonalTiles(piece, rank)
+    rank = rank or 1
+    local tiles = {}
+
+    for i = 1, rank do
+        table.insert(tiles, (GetRelativeTile(piece, -i, i)))
     end
 
     return tiles
