@@ -394,8 +394,8 @@ local GetMovement = {
             { -1, 1 },
         })
 
-        SetColors(piece, Colors.Slide, pickup)
-        SetColors(piece, Colors.Slide, pickup)
+        SetColors(ftiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ChineseCock = function(piece, pickup)
