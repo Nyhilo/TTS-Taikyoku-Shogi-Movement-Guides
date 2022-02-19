@@ -596,7 +596,18 @@ local GetMovement = {
     end,
 
     FireGeneral = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 2, 0 },
+            { 1, 0 },
+            { 1, -1 },
+            { 1, 1 },
+            { -1, 0 },
+            { -2, 0 },
+            { -3, 0 },
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FireOx = function(piece, pickup)
@@ -901,7 +912,16 @@ local GetMovement = {
     end,
 
     HorseGeneral = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 2, 0 },
+            { 1, 0 },
+            { -1, 0 },
+            { 1, -1 },
+            { 1, 1 },
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     HorseSoldier = function(piece, pickup)
@@ -1121,7 +1141,16 @@ local GetMovement = {
     end,
 
     OxGeneral = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 2, 0 },
+            { 1, 0 },
+            { -1, 0 },
+            { 1, -1 },
+            { 1, 1 },
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     OxSoldier = function(piece, pickup)
@@ -1280,7 +1309,16 @@ local GetMovement = {
     end,
 
     RiverGeneral = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 2, 0 },
+            { 1, 0 },
+            { 1, -1 },
+            { 1, 1 },
+            { -1, 0 },
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RoaringDog = function(piece, pickup)
@@ -1716,7 +1754,16 @@ local GetMovement = {
     end,
 
     WindGeneral = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 2, 0 },
+            { 1, 0 },
+            { 1, -1 },
+            { 1, 1 },
+            { -1, 0 },
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WindSnappingTurtle = function(piece, pickup)
