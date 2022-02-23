@@ -534,17 +534,15 @@ local GetMovement = {
     end,
 
     DivineSparrow = function(piece, pickup)
-        local innerRingTiles = GetAreaTiles(piece, 1)
-        local tl_tiles = GetTileLine_TopLeft(piece)
-        local br_tiles = GetTileLine_BottomRight(piece)
-        local bl_tiles = GetTileLine_BottomLeft(piece)
+        local tiles = GetAreaTiles(piece)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_BottomRight(piece),
+            GetTileLine_BottomLeft(piece)
+        })
 
-        SetColors(innerRingTiles, Colors.Slide, pickup)
-
-        -- Overwrites some of the inner ring tiles
-        SetColors(tl_tiles, Colors.Line, pickup)
-        SetColors(br_tiles, Colors.Line, pickup)
-        SetColors(bl_tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     DivineTiger = function(piece, pickup)
@@ -552,7 +550,15 @@ local GetMovement = {
     end,
 
     DivineTurtle = function(piece, pickup)
+        local tiles = GetAreaTiles(piece)
+        local lines = GetTileListSet({
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomRight(piece),
+            GetTileLine_BottomLeft(piece)
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     Dog = function(piece, pickup)
@@ -1004,7 +1010,19 @@ local GetMovement = {
     end,
 
     GreatBear = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, -1, 0),
+            GetRelativeTile(piece, 0, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatDove = function(piece, pickup)
@@ -1060,7 +1078,17 @@ local GetMovement = {
     end,
 
     GreatTiger = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, 0)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatTurtle = function(piece, pickup)
@@ -1172,11 +1200,29 @@ local GetMovement = {
     end,
 
     LeftArmy = function(piece, pickup)
+        local tiles = GetAreaTiles(piece, 1)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_BottomLeft(piece)
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     LeftChariot = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_BottomRight(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 0, -1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     LeftDog = function(piece, pickup)
@@ -1218,7 +1264,18 @@ local GetMovement = {
     end,
 
     LeftTiger = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopRight(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomRight(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, -1, -1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     LeopardKing = function(piece, pickup)
@@ -1567,11 +1624,29 @@ local GetMovement = {
     end,
 
     RightArmy = function(piece, pickup)
+        local tiles = GetAreaTiles(piece, 1)
+        local lines = GetTileListSet({
+            GetTileLine_TopRight(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomRight(piece)
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     RightChariot = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopRight(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_BottomLeft(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 0, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RightDog = function(piece, pickup)
@@ -1617,7 +1692,18 @@ local GetMovement = {
     end,
 
     RightTiger = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_BottomLeft(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RiverGeneral = function(piece, pickup)
@@ -1714,7 +1800,19 @@ local GetMovement = {
     end,
 
     RunningRabbit = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 0),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RunningSerpent = function(piece, pickup)
