@@ -297,7 +297,19 @@ local GetMovement = {
     end,
 
     BurningChariot = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 0, 1),
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BurningGeneral = function(piece, pickup)
@@ -417,7 +429,21 @@ local GetMovement = {
     end,
 
     ChineseRiver = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, 0),
+        }
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     ClimbingMonkey = function(piece, pickup)
@@ -427,7 +453,17 @@ local GetMovement = {
     end,
 
     CloudDragon = function(piece, pickup)
+        local tiles = GetAreaTiles(piece, 1)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     CloudEagle = function(piece, pickup)
@@ -719,7 +755,21 @@ local GetMovement = {
     end,
 
     FireOx = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 0, 1),
+        }
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     FlyingCat = function(piece, pickup)
@@ -746,7 +796,18 @@ local GetMovement = {
     end,
 
     FlyingFalcon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, 0),
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FlyingGoose = function(piece, pickup)
@@ -835,7 +896,19 @@ local GetMovement = {
     end,
 
     FreeBoar = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, -1, 0),
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeChicken = function(piece, pickup)
@@ -1591,7 +1664,17 @@ local GetMovement = {
     end,
 
     RainDragon = function(piece, pickup)
+        local tiles = GetAreaTiles(piece, 1)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     RamsHeadSoldier = function(piece, pickup)
@@ -1842,7 +1925,18 @@ local GetMovement = {
     end,
 
     RunningWolf = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, 0),
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RushingBird = function(piece, pickup)
@@ -2405,7 +2499,19 @@ local GetMovement = {
     end,
 
     WindDragon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local tiles = {
+            GetRelativeTile(piece, -1, -1),
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WindGeneral = function(piece, pickup)
