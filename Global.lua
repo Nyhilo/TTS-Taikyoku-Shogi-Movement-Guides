@@ -1747,25 +1747,46 @@ local GetMovement = {
     end,
 
     SideMonkey = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, 0)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SideMover = function(piece, pickup)
-        local leftTiles = GetTileLine_Left(piece)
-        local rightTiles = GetTileLine_Right(piece)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, 0)
+        }
 
-        local frontTile = GetRelativeTile(piece, 1, 0)
-        local backTile = GetRelativeTile(piece, -1, 0)
-
-        SetColors(leftTiles, Colors.Line, pickup)
-        SetColors(rightTiles, Colors.Line, pickup)
-
-        SetColor(frontTile, Colors.Slide, pickup)
-        SetColor(backTile, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SideOx = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, -1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SideSerpent = function(piece, pickup)
@@ -1777,7 +1798,17 @@ local GetMovement = {
     end,
 
     SideWolf = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SideFlyer = function(piece, pickup)
@@ -2102,7 +2133,17 @@ local GetMovement = {
     end,
 
     ViolentOx = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, -1, 0)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ViolentStag = function(piece, pickup)
