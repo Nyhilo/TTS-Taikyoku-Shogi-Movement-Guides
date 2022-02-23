@@ -461,7 +461,21 @@ local GetMovement = {
     end,
 
     CopperElephant = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     CopperGeneral = function(piece, pickup)
@@ -755,7 +769,21 @@ local GetMovement = {
     end,
 
     FlyingStag = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 0, 1),
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FlyingSwallow = function(piece, pickup)
@@ -1423,7 +1451,19 @@ local GetMovement = {
     end,
 
     PloddingOx = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     PoisonousSnake = function(piece, pickup)
@@ -1733,7 +1773,14 @@ local GetMovement = {
     end,
 
     SideBoar = function(piece, pickup)
+        local tiles = GetAreaTiles(piece, 1)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     SideDragon = function(piece, pickup)
@@ -1812,7 +1859,19 @@ local GetMovement = {
     end,
 
     SideFlyer = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, -1),
+            GetRelativeTile(piece, -1, 1)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SilverChariot = function(piece, pickup)
@@ -1923,7 +1982,19 @@ local GetMovement = {
     end,
 
     SwallowsWings = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = {
+            GetRelativeTile(piece, 1, -1),
+            GetRelativeTile(piece, 1, 0),
+            GetRelativeTile(piece, 1, 1),
+            GetRelativeTile(piece, -1, 0)
+        }
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SwoopingOwl = function(piece, pickup)
@@ -2021,7 +2092,14 @@ local GetMovement = {
     end,
 
     TurtleSnake = function(piece, pickup)
+        local tiles = GetAreaTiles(piece, 1)
+        local lines = GetTileListSet({
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece)
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     VenomousWolf = function(piece, pickup)
@@ -2031,15 +2109,14 @@ local GetMovement = {
     end,
 
     VermillionSparrow = function(piece, pickup)
-        local innerRingTiles = GetAreaTiles(piece, 1)
-        local tl_tiles = GetTileLine_TopLeft(piece)
-        local br_tiles = GetTileLine_BottomRight(piece)
+        local tiles = GetAreaTiles(piece, 1)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_BottomRight(piece)
+        })
 
-        SetColors(innerRingTiles, Colors.Slide, pickup)
-
-        -- Overwrites some of the inner ring tiles
-        SetColors(tl_tiles, Colors.Line, pickup)
-        SetColors(br_tiles, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     VerticalBear = function(piece, pickup)
