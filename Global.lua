@@ -957,7 +957,21 @@ local GetMovement = {
     end,
 
     FreeChicken = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeDemon = function(piece, pickup)
@@ -965,7 +979,16 @@ local GetMovement = {
     end,
 
     FreeDog = function(piece, pickup)
+        local tiles = GetKingTiles(piece, 2)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece)
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     FreeDragon = function(piece, pickup)
@@ -1184,7 +1207,21 @@ local GetMovement = {
     end,
 
     GreatHorse = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatLeopard = function(piece, pickup)
@@ -1284,7 +1321,21 @@ local GetMovement = {
     end,
 
     Horseman = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     HowlingDog = function(piece, pickup)
@@ -2764,7 +2815,21 @@ local GetMovement = {
     end,
 
     WoodlandDemon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Wrestler = function(piece, pickup)
