@@ -2404,8 +2404,23 @@ local GetMovement = {
         SetColors(tiles, Colors.Line, pickup)
     end,
 
-    StrongSoldier = function(piece, pickup)
+    StrongBear = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { -1, 0 },
+            { -2, 0 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     StruttingCrow = function(piece, pickup)
@@ -3187,7 +3202,7 @@ local MovementTable = {
     ['Stone General'] = GetMovement.StoneGeneral,
     ['Strong Chariot'] = GetMovement.StrongChariot,
     ['Strong Eagle'] = GetMovement.StrongEagle,
-    ['Strong Soldier'] = GetMovement.StrongSoldier,
+    ['Strong Bear'] = GetMovement.StrongBear,
     ['Strutting Crow'] = GetMovement.StruttingCrow,
     ['Swallow\'s Wings'] = GetMovement.SwallowsWings,
     ['Swooping Owl'] = GetMovement.SwoopingOwl,
