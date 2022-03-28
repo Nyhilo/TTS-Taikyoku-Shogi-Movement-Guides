@@ -1513,7 +1513,16 @@ local GetMovement = {
     end,
 
     LiberatedHorse = function(piece, pickup)
+        local lines = GetTileLine_Top(piece)
+        local tiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 1, 1 },
+            { -1, 0 },
+            { -2, 0 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Lion = function(piece, pickup)
@@ -2568,7 +2577,17 @@ local GetMovement = {
     end,
 
     VerticalBear = function(piece, pickup)
+        local lines = GetTileLine_Top(piece)
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 0, -2 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, 0 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     VerticalHorse = function(piece, pickup)
@@ -2624,7 +2643,17 @@ local GetMovement = {
     end,
 
     VerticalSoldier = function(piece, pickup)
+        local lines = GetTileLine_Top(piece)
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 0, -2 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, 0 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     VerticalTiger = function(piece, pickup)
