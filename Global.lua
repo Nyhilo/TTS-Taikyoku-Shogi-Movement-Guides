@@ -419,7 +419,23 @@ local GetMovement = {
     end,
 
     ChariotSoldier = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ChickenGeneral = function(piece, pickup)
@@ -777,7 +793,23 @@ local GetMovement = {
     end,
 
     FireDemon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { -2, 0 },
+            { -1, 0 },
+            { 1, 0 },
+            { 2, 0 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FireDragon = function(piece, pickup)
@@ -2011,7 +2043,22 @@ local GetMovement = {
     end,
 
     RunningOx = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Left(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { -2, -2 },
+            { -1, 1 },
+            { -2, 2 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RunningPup = function(piece, pickup)
@@ -2653,7 +2700,23 @@ local GetMovement = {
     end,
 
     WaterBuffalo = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { -2, 0 },
+            { -1, 0 },
+            { 1, 0 },
+            { 2, 0 }
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WaterDragon = function(piece, pickup)
