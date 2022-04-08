@@ -419,7 +419,18 @@ local GetMovement = {
     end,
 
     ChariotSoldier = function(piece, pickup)
+        local tiles = GetKingTiles(piece, 2)
+        local line = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        }) 
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(line, Colors.Line, pickup)
     end,
 
     ChickenGeneral = function(piece, pickup)
@@ -777,7 +788,18 @@ local GetMovement = {
     end,
 
     FireDemon = function(piece, pickup)
+        local tiles = GetKingTiles(piece, 2)
+        local line = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        }) 
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(line, Colors.Line, pickup)
     end,
 
     FireDragon = function(piece, pickup)
@@ -2011,7 +2033,22 @@ local GetMovement = {
     end,
 
     RunningOx = function(piece, pickup)
+        local line = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { -1, -2 },
+            { -2, 1 },
+            { -2, 2 },
+        })
 
+        SetColors(line, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RunningPup = function(piece, pickup)
@@ -2335,6 +2372,25 @@ local GetMovement = {
         SetColors(tiles, Colors.Slide, pickup)
     end,
 
+    StrongBear = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { -1, 0 },
+            { -2, 0 }
+        })
+        local line = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        }) 
+
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(line, Colors.Line, pickup)
+    end,
+
     StrongChariot = function(piece, pickup)
         local tiles = GetTileListSet({
             GetTileLine_TopLeft(piece),
@@ -2355,10 +2411,6 @@ local GetMovement = {
         })
 
         SetColors(tiles, Colors.Line, pickup)
-    end,
-
-    StrongSoldier = function(piece, pickup)
-
     end,
 
     StruttingCrow = function(piece, pickup)
@@ -2653,7 +2705,18 @@ local GetMovement = {
     end,
 
     WaterBuffalo = function(piece, pickup)
+        local tiles = GetKingTiles(piece, 2)
+        local line = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        }) 
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(line, Colors.Line, pickup)
     end,
 
     WaterDragon = function(piece, pickup)
@@ -3122,9 +3185,9 @@ local MovementTable = {
     ['Square Mover'] = GetMovement.SquareMover,
     ['Stone Chariot'] = GetMovement.StoneChariot,
     ['Stone General'] = GetMovement.StoneGeneral,
+    ['Strong Bear'] = GetMovement.StrongBear,
     ['Strong Chariot'] = GetMovement.StrongChariot,
     ['Strong Eagle'] = GetMovement.StrongEagle,
-    ['Strong Soldier'] = GetMovement.StrongSoldier,
     ['Strutting Crow'] = GetMovement.StruttingCrow,
     ['Swallow\'s Wings'] = GetMovement.SwallowsWings,
     ['Swooping Owl'] = GetMovement.SwoopingOwl,
