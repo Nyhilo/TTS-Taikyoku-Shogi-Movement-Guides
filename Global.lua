@@ -2484,7 +2484,18 @@ local GetMovement = {
     end,
 
     TigerSoldier = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 2, 0 },
+            { 1, 0 },
+            { -1, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     TileChariot = function(piece, pickup)
