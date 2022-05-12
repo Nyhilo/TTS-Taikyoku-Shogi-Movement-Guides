@@ -706,7 +706,20 @@ local GetMovement = {
     end,
 
     EarthDragon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 2, 0 },
+            { 1, 0 },
+            { -1, 0 },
+            { 1, -1 },
+            { 1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     EarthGeneral = function(piece, pickup)
@@ -1151,7 +1164,23 @@ local GetMovement = {
     end,
 
     GoldChariot = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 1, 1 },
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GoldGeneral = function(piece, pickup)
@@ -2261,7 +2290,18 @@ local GetMovement = {
     end,
 
     SideSoldier = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 2, 0 },
+            { 1, 0 },
+            { -1, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SideWolf = function(piece, pickup)
@@ -2295,7 +2335,21 @@ local GetMovement = {
     end,
 
     SilverChariot = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 2, -2 },
+            { 1, 1 },
+            { 2, 2 },
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SilverGeneral = function(piece, pickup)
@@ -2372,7 +2426,21 @@ local GetMovement = {
     end,
 
     StoneChariot = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { 1, -1 },
+            { 1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     StoneGeneral = function(piece, pickup)
