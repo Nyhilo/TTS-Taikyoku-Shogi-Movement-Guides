@@ -653,7 +653,17 @@ local GetMovement = {
     end,
 
     CrossbowGeneral = function(piece, pickup)
+        local lines = GetTileLine_Top(piece)
+        local tiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 5),
+            GetTiles_TopRight(piece, 5),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 2),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     CrossbowSoldier = function(piece, pickup)
@@ -1191,7 +1201,18 @@ local GetMovement = {
     end,
 
     FreeFire = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetDiagonalLines(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTiles_Top(piece, 5),
+            GetTiles_Bottom(piece, 5),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeHorse = function(piece, pickup)
@@ -1548,7 +1569,16 @@ local GetMovement = {
     end,
 
     GreatShark = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        local tiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 5),
+            GetTiles_TopRight(piece, 5),
+            GetTiles_BottomLeft(piece, 2),
+            GetTiles_BottomRight(piece, 2),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatStag = function(piece, pickup)
@@ -2113,7 +2143,21 @@ local GetMovement = {
     end,
 
     PlayfulCockatoo = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_Left(piece, 5),
+            GetTiles_Right(piece, 5),
+            GetTiles_BottomLeft(piece, 2),
+            GetTiles_BottomRight(piece, 2),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     PloddingOx = function(piece, pickup)
@@ -2415,7 +2459,16 @@ local GetMovement = {
     end,
 
     RunningDragon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetDiagonalLines(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+        })
+        local tiles = GetTiles_Bottom(piece, 5)
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RunningHorse = function(piece, pickup)
