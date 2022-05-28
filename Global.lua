@@ -364,7 +364,7 @@ local GetMovement = {
             GetTopTiles(piece, 7),
             GetLeftTiles(piece, 3),
             GetRightTiles(piece, 3),
-            GetDownTiles(piece, 1),
+            GetBottomTiles(piece, 1),
         })
 
         SetColors(tiles, Colors.Slide, pickup)
@@ -597,7 +597,7 @@ local GetMovement = {
             GetTopTiles(piece, 5),
             GetLeftTiles(piece, 3),
             GetRightTiles(piece, 3),
-            GetDownTiles(piece, 1),
+            GetBottomTiles(piece, 1),
         })
 
         SetColors(tiles, Colors.Slide, pickup)
@@ -983,7 +983,18 @@ local GetMovement = {
     end,
 
     ForestDemon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTopTiles(piece, 3),
+            GetLeftTiles(piece, 3),
+            GetRightTiles(piece, 3),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FragrantElephant = function(piece, pickup)
@@ -1336,7 +1347,19 @@ local GetMovement = {
     end,
 
     GreatDragon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTopTiles(piece, 3),
+            GetBottomTiles(piece, 3),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatDreamEater = function(piece, pickup)
@@ -3660,7 +3683,7 @@ function GetTopTiles(piece, rank)
     return tiles
 end
 
-function GetDownTiles(piece, rank)
+function GetBottomTiles(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3715,7 +3738,7 @@ function GetTopRightDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetDownLeftDiagonalTiles(piece, rank)
+function GetBottomLeftDiagonalTiles(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3726,7 +3749,7 @@ function GetDownLeftDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetDownRightDiagonalTiles(piece, rank)
+function GetBottomRightDiagonalTiles(piece, rank)
     rank = rank or 1
     local tiles = {}
 
