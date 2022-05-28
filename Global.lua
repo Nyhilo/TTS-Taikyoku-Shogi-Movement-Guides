@@ -435,7 +435,21 @@ local GetMovement = {
     end,
 
     CenterStandard = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
+            GetBottomLeftDiagonalTiles(piece, 3),
+            GetBottomRightDiagonalTiles(piece, 3),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     CeramicDove = function(piece, pickup)
@@ -1241,7 +1255,21 @@ local GetMovement = {
     end,
 
     FrontStandard = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
+            GetBottomLeftDiagonalTiles(piece, 3),
+            GetBottomRightDiagonalTiles(piece, 3),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FuriousFiend = function(piece, pickup)
@@ -1343,7 +1371,21 @@ local GetMovement = {
     end,
 
     GreatDove = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
+            GetBottomLeftDiagonalTiles(piece, 3),
+            GetBottomRightDiagonalTiles(piece, 3),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatDragon = function(piece, pickup)
@@ -1417,7 +1459,21 @@ local GetMovement = {
     end,
 
     GreatStandard = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetBottomLeftDiagonalTiles(piece, 3),
+            GetBottomRightDiagonalTiles(piece, 3),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatTiger = function(piece, pickup)
@@ -2436,7 +2492,19 @@ local GetMovement = {
     end,
 
     SideSerpent = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 2, 0 },
+            { 1, 0 },
+            { -1, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SideSoldier = function(piece, pickup)
@@ -2887,7 +2955,17 @@ local GetMovement = {
     end,
 
     VerticalWolf = function(piece, pickup)
+        local lines = GetTileLine_Top(piece)
+        local tiles = GetTileSet(piece, {
+            { 0, -1 },
+            { 0, 1 },
+            { -1, 0 },
+            { -2, 0 },
+            { -3, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ViceGeneral = function(piece, pickup)
