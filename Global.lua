@@ -1078,10 +1078,6 @@ local GetMovement = {
         SetColors(tiles, Colors.Slide, pickup)
     end,
 
-    FreeBaku = function(piece, pickup)
-
-    end,
-
     FreeBear = function(piece, pickup)
         local tiles = GetTileListSet({
             GetTileLine_TopLeft(piece),
@@ -1173,6 +1169,21 @@ local GetMovement = {
         })
 
         SetColors(tiles, Colors.Line, pickup)
+    end,
+
+    FreeDreamEater = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetDiagonalLines(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTiles_Left(piece, 5),
+            GetTiles_Right(piece, 5),
+        })
+
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeEagle = function(piece, pickup)
@@ -3535,7 +3546,6 @@ local MovementTable = {
     ['Flying Swallow'] = GetMovement.FlyingSwallow,
     ['Forest Demon'] = GetMovement.ForestDemon,
     ['Fragrant Elephant'] = GetMovement.FragrantElephant,
-    ['Free Baku'] = GetMovement.FreeBaku,
     ['Free Bear'] = GetMovement.FreeBear,
     ['Free Bird'] = GetMovement.FreeBird,
     ['Free Boar'] = GetMovement.FreeBoar,
@@ -3543,6 +3553,7 @@ local MovementTable = {
     ['Free Demon'] = GetMovement.FreeDemon,
     ['Free Dog'] = GetMovement.FreeDog,
     ['Free Dragon'] = GetMovement.FreeDragon,
+    ['Free Dream-Eater'] = GetMovement.FreeDreamEater,
     ['Free Eagle'] = GetMovement.FreeEagle,
     ['Free Fire'] = GetMovement.FreeFire,
     ['Free Horse'] = GetMovement.FreeHorse,
