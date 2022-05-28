@@ -1134,7 +1134,18 @@ local GetMovement = {
     end,
 
     FreeDemon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetDiagonalLines(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTiles_Top(piece, 5),
+            GetTiles_Bottom(piece, 5),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeDog = function(piece, pickup)
@@ -2054,7 +2065,15 @@ local GetMovement = {
     end,
 
     PeacefulMountain = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
+        local tiles = GetTileListSet({
+            GetTiles_Top(piece, 5),
+            GetTiles_Left(piece, 5),
+            GetTiles_Right(piece, 5),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Peacock = function(piece, pickup)
@@ -2292,7 +2311,14 @@ local GetMovement = {
     end,
 
     RightPhoenix = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
+        local tiles = GetTileListSet({
+            GetTiles_Left(piece, 5),
+            GetTiles_Right(piece, 5),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     RightTiger = function(piece, pickup)
