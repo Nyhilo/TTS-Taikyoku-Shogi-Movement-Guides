@@ -157,7 +157,21 @@ local GetMovement = {
     end,
 
     BearSoldier = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BearsEyes = function(piece, pickup)
@@ -288,7 +302,21 @@ local GetMovement = {
     end,
 
     BoarSoldier = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     BuddhistDevil = function(piece, pickup)
@@ -427,7 +455,7 @@ local GetMovement = {
             GetTileLine_BottomLeft(piece),
             GetTileLine_Bottom(piece),
             GetTileLine_BottomRight(piece),
-        }) 
+        })
 
         SetColors(tiles, Colors.Slide, pickup)
         SetColors(line, Colors.Line, pickup)
@@ -809,7 +837,7 @@ local GetMovement = {
             GetTileLine_Right(piece),
             GetTileLine_BottomLeft(piece),
             GetTileLine_BottomRight(piece),
-        }) 
+        })
 
         SetColors(tiles, Colors.Slide, pickup)
         SetColors(line, Colors.Line, pickup)
@@ -1049,7 +1077,23 @@ local GetMovement = {
     end,
 
     FreeHorse = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeKing = function(piece, pickup)
@@ -1070,15 +1114,63 @@ local GetMovement = {
     end,
 
     FreeOx = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreePig = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreePup = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FreeSerpent = function(piece, pickup)
@@ -1528,7 +1620,21 @@ local GetMovement = {
     end,
 
     LeopardSoldier = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+            { -1, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     LiberatedHorse = function(piece, pickup)
@@ -2462,7 +2568,7 @@ local GetMovement = {
             GetTileLine_Right(piece),
             GetTileLine_BottomLeft(piece),
             GetTileLine_BottomRight(piece),
-        }) 
+        })
 
         SetColors(tiles, Colors.Slide, pickup)
         SetColors(line, Colors.Line, pickup)
