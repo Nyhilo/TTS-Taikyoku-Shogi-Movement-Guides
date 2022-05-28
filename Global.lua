@@ -321,8 +321,8 @@ local GetMovement = {
 
     BuddhistDevil = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 3),
-            GetUpRightDiagonalTiles(piece, 3),
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
             GetTileSet(piece, {
                 { 0, -1 },
                 { 0, 1 },
@@ -359,9 +359,9 @@ local GetMovement = {
 
     BurningSoldier = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 5),
-            GetUpRightDiagonalTiles(piece, 5),
-            GetUpTiles(piece, 7),
+            GetTopLeftDiagonalTiles(piece, 5),
+            GetTopRightDiagonalTiles(piece, 5),
+            GetTopTiles(piece, 7),
             GetLeftTiles(piece, 3),
             GetRightTiles(piece, 3),
             GetDownTiles(piece, 1),
@@ -462,7 +462,7 @@ local GetMovement = {
     end,
 
     ChickenGeneral = function(piece, pickup)
-        local ftiles = GetUpTiles(piece, 4)
+        local ftiles = GetTopTiles(piece, 4)
         local tiles = GetTileSet(piece, {
             { -1, -1 },
             { -1, 1 },
@@ -549,7 +549,17 @@ local GetMovement = {
     end,
 
     CopperChariot = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3)
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     CopperElephant = function(piece, pickup)
@@ -582,9 +592,9 @@ local GetMovement = {
 
     CrossbowSoldier = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 3),
-            GetUpRightDiagonalTiles(piece, 3),
-            GetUpTiles(piece, 5),
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
+            GetTopTiles(piece, 5),
             GetLeftTiles(piece, 3),
             GetRightTiles(piece, 3),
             GetDownTiles(piece, 1),
@@ -1667,7 +1677,18 @@ local GetMovement = {
     end,
 
     LittleStandard = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        local tiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 2, -2 },
+            { 1, 1 },
+            { 2, 2 },
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     LittleTurtle = function(piece, pickup)
@@ -1692,8 +1713,8 @@ local GetMovement = {
 
     MountainGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 3),
-            GetUpRightDiagonalTiles(piece, 3),
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
             GetTileSet(piece, {
                 { 1, 0 },
                 { -1, 0 },
@@ -1705,8 +1726,8 @@ local GetMovement = {
 
     MountainStag = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 3),
-            GetUpRightDiagonalTiles(piece, 3),
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
             GetTileSet(piece, {
                 { 1, 0 },
                 { 0, -2 },
@@ -1850,8 +1871,8 @@ local GetMovement = {
 
     PigGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 4),
-            GetUpRightDiagonalTiles(piece, 4),
+            GetTopLeftDiagonalTiles(piece, 4),
+            GetTopRightDiagonalTiles(piece, 4),
             GetTileSet(piece, {
                 { -1, 0 },
                 { -2, 0 },
@@ -2626,8 +2647,8 @@ local GetMovement = {
 
     SwordGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 3),
-            GetUpRightDiagonalTiles(piece, 3),
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
             GetTileSet(piece, {
                 { 3, 0 },
                 { 2, 0 },
@@ -2711,8 +2732,8 @@ local GetMovement = {
 
     TurtleDove = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 5),
-            GetUpRightDiagonalTiles(piece, 5),
+            GetTopLeftDiagonalTiles(piece, 5),
+            GetTopRightDiagonalTiles(piece, 5),
             GetTileSet(piece, {
                 { 0, -1 },
                 { -1, 0 },
@@ -2944,8 +2965,8 @@ local GetMovement = {
 
     WaterGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetUpLeftDiagonalTiles(piece, 3),
-            GetUpRightDiagonalTiles(piece, 3),
+            GetTopLeftDiagonalTiles(piece, 3),
+            GetTopRightDiagonalTiles(piece, 3),
             GetTileSet(piece, {
                 { 1, 0 },
                 { -1, 0 },
@@ -3628,7 +3649,7 @@ function GetDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetUpTiles(piece, rank)
+function GetTopTiles(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3672,7 +3693,7 @@ function GetRightTiles(piece, rank)
     return tiles
 end
 
-function GetUpLeftDiagonalTiles(piece, rank)
+function GetTopLeftDiagonalTiles(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3683,7 +3704,7 @@ function GetUpLeftDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetUpRightDiagonalTiles(piece, rank)
+function GetTopRightDiagonalTiles(piece, rank)
     rank = rank or 1
     local tiles = {}
 
