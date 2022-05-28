@@ -189,9 +189,9 @@ local GetMovement = {
             GetTileLine_BottomRight(piece),
         })
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 2),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 2),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -335,8 +335,8 @@ local GetMovement = {
 
     BuddhistDevil = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
             GetTileSet(piece, {
                 { 0, -1 },
                 { 0, 1 },
@@ -374,9 +374,9 @@ local GetMovement = {
             GetTileLine_TopRight(piece),
         })
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 2),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 2),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -385,12 +385,12 @@ local GetMovement = {
 
     BurningSoldier = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 5),
-            GetTopRightDiagonalTiles(piece, 5),
-            GetTopTiles(piece, 7),
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 1),
+            GetTiles_TopLeft(piece, 5),
+            GetTiles_TopRight(piece, 5),
+            GetTiles_Top(piece, 7),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 1),
         })
 
         SetColors(tiles, Colors.Slide, pickup)
@@ -409,9 +409,9 @@ local GetMovement = {
             GetTileLine_BottomRight(piece),
         })
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 2),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 2),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -482,10 +482,10 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
-            GetBottomLeftDiagonalTiles(piece, 3),
-            GetBottomRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -516,7 +516,7 @@ local GetMovement = {
     end,
 
     ChickenGeneral = function(piece, pickup)
-        local ftiles = GetTopTiles(piece, 4)
+        local ftiles = GetTiles_Top(piece, 4)
         local tiles = GetTileSet(piece, {
             { -1, -1 },
             { -1, 1 },
@@ -582,10 +582,10 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
-            GetLeftTiles(piece, 1),
-            GetRightTiles(piece, 1),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_Left(piece, 1),
+            GetTiles_Right(piece, 1),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -620,8 +620,8 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3)
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3)
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -658,12 +658,12 @@ local GetMovement = {
 
     CrossbowSoldier = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
-            GetTopTiles(piece, 5),
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 1),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_Top(piece, 5),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 1),
         })
 
         SetColors(tiles, Colors.Slide, pickup)
@@ -922,10 +922,10 @@ local GetMovement = {
     FireDragon = function(piece, pickup)
         local lines = GetCrossLines(piece)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 4),
-            GetTopRightDiagonalTiles(piece, 4),
-            GetBottomLeftDiagonalTiles(piece, 2),
-            GetBottomRightDiagonalTiles(piece, 2)
+            GetTiles_TopLeft(piece, 4),
+            GetTiles_TopRight(piece, 4),
+            GetTiles_BottomLeft(piece, 2),
+            GetTiles_BottomRight(piece, 2)
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1063,9 +1063,9 @@ local GetMovement = {
             GetTileLine_TopRight(piece),
         })
         local tiles = GetTileListSet({
-            GetTopTiles(piece, 3),
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
+            GetTiles_Top(piece, 3),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1323,10 +1323,10 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
-            GetBottomLeftDiagonalTiles(piece, 3),
-            GetBottomRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1417,12 +1417,12 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 1),
-            GetTopRightDiagonalTiles(piece, 1),
-            GetBottomLeftDiagonalTiles(piece, 1),
-            GetBottomRightDiagonalTiles(piece, 1),
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
+            GetTiles_TopLeft(piece, 1),
+            GetTiles_TopRight(piece, 1),
+            GetTiles_BottomLeft(piece, 1),
+            GetTiles_BottomRight(piece, 1),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1453,10 +1453,10 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
-            GetBottomLeftDiagonalTiles(piece, 3),
-            GetBottomRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1471,8 +1471,8 @@ local GetMovement = {
             GetTileLine_BottomRight(piece),
         })
         local tiles = GetTileListSet({
-            GetTopTiles(piece, 3),
-            GetBottomTiles(piece, 3),
+            GetTiles_Top(piece, 3),
+            GetTiles_Bottom(piece, 3),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1543,8 +1543,8 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetBottomLeftDiagonalTiles(piece, 3),
-            GetBottomRightDiagonalTiles(piece, 3),
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1630,9 +1630,9 @@ local GetMovement = {
             GetTileLine_TopRight(piece),
         })
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 1),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 1),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1869,8 +1869,8 @@ local GetMovement = {
             GetTileLine_Bottom(piece),
         })
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 5),
-            GetRightTiles(piece, 5),
+            GetTiles_Left(piece, 5),
+            GetTiles_Right(piece, 5),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1880,11 +1880,11 @@ local GetMovement = {
     LongbowSoldier = function(piece, pickup)
         local lines = GetTileLine_Top(piece)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
-            GetLeftTiles(piece, 2),
-            GetRightTiles(piece, 2),
-            GetBottomTiles(piece, 1),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_Left(piece, 2),
+            GetTiles_Right(piece, 2),
+            GetTiles_Bottom(piece, 1),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -1901,8 +1901,8 @@ local GetMovement = {
 
     MountainGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
             GetTileSet(piece, {
                 { 1, 0 },
                 { -1, 0 },
@@ -1914,8 +1914,8 @@ local GetMovement = {
 
     MountainStag = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
             GetTileSet(piece, {
                 { 1, 0 },
                 { 0, -2 },
@@ -2032,9 +2032,9 @@ local GetMovement = {
             GetTileLine_TopRight(piece),
         })
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 1),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 1),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -2071,8 +2071,8 @@ local GetMovement = {
 
     PigGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 4),
-            GetTopRightDiagonalTiles(piece, 4),
+            GetTiles_TopLeft(piece, 4),
+            GetTiles_TopRight(piece, 4),
             GetTileSet(piece, {
                 { -1, 0 },
                 { -2, 0 },
@@ -2741,9 +2741,9 @@ local GetMovement = {
     SpearGeneral = function(piece, pickup)
         local lines = GetTileLine_Top(piece)
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 3),
-            GetRightTiles(piece, 3),
-            GetBottomTiles(piece, 2),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Bottom(piece, 2),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -2867,8 +2867,8 @@ local GetMovement = {
 
     SwordGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
             GetTileSet(piece, {
                 { 3, 0 },
                 { 2, 0 },
@@ -2901,9 +2901,9 @@ local GetMovement = {
             GetTileLine_TopRight(piece),
         })
         local tiles = GetTileListSet({
-            GetLeftTiles(piece, 4),
-            GetRightTiles(piece, 4),
-            GetBottomTiles(piece, 4),
+            GetTiles_Left(piece, 4),
+            GetTiles_Right(piece, 4),
+            GetTiles_Bottom(piece, 4),
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -2964,8 +2964,8 @@ local GetMovement = {
 
     TurtleDove = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 5),
-            GetTopRightDiagonalTiles(piece, 5),
+            GetTiles_TopLeft(piece, 5),
+            GetTiles_TopRight(piece, 5),
             GetTileSet(piece, {
                 { 0, -1 },
                 { -1, 0 },
@@ -3204,10 +3204,10 @@ local GetMovement = {
     WaterDragon = function(piece, pickup)
         local lines = GetCrossLines(piece)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 2),
-            GetTopRightDiagonalTiles(piece, 2),
-            GetBottomLeftDiagonalTiles(piece, 4),
-            GetBottomRightDiagonalTiles(piece, 4)
+            GetTiles_TopLeft(piece, 2),
+            GetTiles_TopRight(piece, 2),
+            GetTiles_BottomLeft(piece, 4),
+            GetTiles_BottomRight(piece, 4)
         })
 
         SetColors(lines, Colors.Line, pickup)
@@ -3216,8 +3216,8 @@ local GetMovement = {
 
     WaterGeneral = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetTopLeftDiagonalTiles(piece, 3),
-            GetTopRightDiagonalTiles(piece, 3),
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
             GetTileSet(piece, {
                 { 1, 0 },
                 { -1, 0 },
@@ -3394,8 +3394,8 @@ local GetMovement = {
 
     Yaksha = function(piece, pickup)
         local tiles = GetTileListSet({
-            GetRightTiles(piece, 3),
-            GetRightTiles(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_Right(piece, 3),
             GetTileSet(piece, {
                 { 1, -1 },
                 { 1, 1 },
@@ -3900,7 +3900,7 @@ function GetDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetTopTiles(piece, rank)
+function GetTiles_Top(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3911,7 +3911,7 @@ function GetTopTiles(piece, rank)
     return tiles
 end
 
-function GetBottomTiles(piece, rank)
+function GetTiles_Bottom(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3922,7 +3922,7 @@ function GetBottomTiles(piece, rank)
     return tiles
 end
 
-function GetLeftTiles(piece, rank)
+function GetTiles_Left(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3933,7 +3933,7 @@ function GetLeftTiles(piece, rank)
     return tiles
 end
 
-function GetRightTiles(piece, rank)
+function GetTiles_Right(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3944,7 +3944,7 @@ function GetRightTiles(piece, rank)
     return tiles
 end
 
-function GetTopLeftDiagonalTiles(piece, rank)
+function GetTiles_TopLeft(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3955,7 +3955,7 @@ function GetTopLeftDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetTopRightDiagonalTiles(piece, rank)
+function GetTiles_TopRight(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3966,7 +3966,7 @@ function GetTopRightDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetBottomLeftDiagonalTiles(piece, rank)
+function GetTiles_BottomLeft(piece, rank)
     rank = rank or 1
     local tiles = {}
 
@@ -3977,7 +3977,7 @@ function GetBottomLeftDiagonalTiles(piece, rank)
     return tiles
 end
 
-function GetBottomRightDiagonalTiles(piece, rank)
+function GetTiles_BottomRight(piece, rank)
     rank = rank or 1
     local tiles = {}
 
