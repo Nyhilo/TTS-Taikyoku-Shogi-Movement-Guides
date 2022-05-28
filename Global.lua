@@ -920,7 +920,16 @@ local GetMovement = {
     end,
 
     FireDragon = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        local tiles = GetTileListSet({
+            GetTopLeftDiagonalTiles(piece, 4),
+            GetTopRightDiagonalTiles(piece, 4),
+            GetBottomLeftDiagonalTiles(piece, 2),
+            GetBottomRightDiagonalTiles(piece, 2)
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FireGeneral = function(piece, pickup)
@@ -1853,7 +1862,19 @@ local GetMovement = {
     end,
 
     LongbowGeneral = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local tiles = GetTileListSet({
+            GetLeftTiles(piece, 5),
+            GetRightTiles(piece, 5),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     LongbowSoldier = function(piece, pickup)
@@ -2874,7 +2895,19 @@ local GetMovement = {
     end,
 
     ThunderRunner = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local tiles = GetTileListSet({
+            GetLeftTiles(piece, 4),
+            GetRightTiles(piece, 4),
+            GetBottomTiles(piece, 4),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     TigerSoldier = function(piece, pickup)
@@ -3169,7 +3202,16 @@ local GetMovement = {
     end,
 
     WaterDragon = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        local tiles = GetTileListSet({
+            GetTopLeftDiagonalTiles(piece, 2),
+            GetTopRightDiagonalTiles(piece, 2),
+            GetBottomLeftDiagonalTiles(piece, 4),
+            GetBottomRightDiagonalTiles(piece, 4)
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     WaterGeneral = function(piece, pickup)
