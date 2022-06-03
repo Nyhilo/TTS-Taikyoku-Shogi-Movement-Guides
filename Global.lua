@@ -1768,7 +1768,16 @@ local GetMovement = {
     end,
 
     HeavenlyHorse = function(piece, pickup)
+        local lines = GetTileLine_Top(piece)
+        local tiles = GetTileSet(piece, {
+            { 2, -1 },
+            { 2, 1 },
+            { -2, -1 },
+            { -2, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     HeavenlyTetrarch = function(piece, pickup)
