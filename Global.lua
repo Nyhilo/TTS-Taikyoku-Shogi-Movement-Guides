@@ -1586,7 +1586,27 @@ local GetMovement = {
     end,
 
     GreatMaster = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 5),
+            GetTiles_Right(piece, 5),
+            GetTiles_BottomLeft(piece, 5),
+            GetTiles_BottomRight(piece, 5),
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 3, -3 },
+            { 3, 0 },
+            { 3, 3 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     GreatShark = function(piece, pickup)
@@ -1790,7 +1810,26 @@ local GetMovement = {
     end,
 
     KirinMaster = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 3, 0 },
+            { -3, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     Knight = function(piece, pickup)
@@ -2256,7 +2295,26 @@ local GetMovement = {
     end,
 
     PhoenixMaster = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 3, -3 },
+            { 3, 3 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     PigGeneral = function(piece, pickup)
@@ -2555,7 +2613,28 @@ local GetMovement = {
     end,
 
     RoaringDog = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 0, -3 },
+            { 0, 3 },
+            { -3, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     RocMaster = function(piece, pickup)
