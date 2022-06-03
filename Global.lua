@@ -1603,7 +1603,26 @@ local GetMovement = {
     end,
 
     GreatStag = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local innerTiles = GetTileSet(piece, {
+            { -1, -1 },
+            { -1, 1 },
+            { -2, -2 },
+            { -2, 2 },
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 2, -2 },
+            { 2, 2 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     GreatStandard = function(piece, pickup)
@@ -1861,7 +1880,27 @@ local GetMovement = {
     end,
 
     LeftMountainEagle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local innerTiles = GetTileSet(piece, {
+            { -1, 1 },
+            { -2, 2 },
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 2, -2 },
+            { -2, -2 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     LeftTiger = function(piece, pickup)
@@ -1948,7 +1987,28 @@ local GetMovement = {
     end,
 
     LittleTurtle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local innerTiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, -1 },
+            { 0, 1 },
+            { 0, 2 },
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 2, 0 },
+            { -2, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     LongbowGeneral = function(piece, pickup)
@@ -1986,7 +2046,25 @@ local GetMovement = {
     end,
 
     MountainFalcon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local innerTiles = GetTileSet(piece, {
+            { -1, -1 },
+            { -1, 1 },
+            { -2, -2 },
+            { -2, 2 },
+        })
+        local outerTile = GetRelativeTile(piece, 2, 0)
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColor(outerTile, Colors.Jump, pickup)
     end,
 
     MountainGeneral = function(piece, pickup)
@@ -2414,7 +2492,27 @@ local GetMovement = {
     end,
 
     RightMountainEagle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local innerTiles = GetTileSet(piece, {
+            { -1, -1 },
+            { -2, -2 },
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 2, 2 },
+            { -2, 2 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     RightPhoenix = function(piece, pickup)
