@@ -1218,7 +1218,38 @@ local GetMovement = {
     end,
 
     FreeEagle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            -- inner ring
+            { 2, -2 },
+            { 2, 0 },
+            { 2, 2 },
+            { 0, -2 },
+            { 0, 2 },
+            { -2, -2 },
+            { -2, 0 },
+            { -2, 2 },
 
+            -- middle ring
+            { 3, -3 },
+            { 3, 0 },
+            { 3, 3 },
+            { 0, -3 },
+            { 0, 3 },
+            { -3, -3 },
+            { -3, 0 },
+            { -3, 3 },
+
+            -- upper two
+            { 4, -4 },
+            { 4, 4 },
+        })
+
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     FreeFire = function(piece, pickup)
@@ -1544,11 +1575,37 @@ local GetMovement = {
     end,
 
     GreatDreamEater = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 0, -3 },
+            { 0, 3 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     GreatEagle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 2, -2 },
+            { 2, 0 },
+            { 2, 2 },
+            { 0, -2 },
+            { 0, 2 },
+            { -2, -2 },
+            { -2, 0 },
+            { -2, 2 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     GreatElephant = function(piece, pickup)
@@ -1556,7 +1613,17 @@ local GetMovement = {
     end,
 
     GreatFalcon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 2, 0 },
+            { -2, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     GreatGeneral = function(piece, pickup)
@@ -1719,7 +1786,14 @@ local GetMovement = {
     end,
 
     HornedFalcon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tile = GetRelativeTile(piece, 2, 0)
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColor(tile, Colors.Jump, pickup)
     end,
 
     HorseGeneral = function(piece, pickup)
@@ -2003,7 +2077,23 @@ local GetMovement = {
     end,
 
     LionDog = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 3, -3 },
+            { 3, 0 },
+            { 3, 3 },
+            { 0, -3 },
+            { 0, 3 },
+            { -3, -3 },
+            { -3, 0 },
+            { -3, 3 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     LionHawk = function(piece, pickup)
@@ -2081,7 +2171,23 @@ local GetMovement = {
     end,
 
     MountainCrane = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 3, -3 },
+            { 3, 0 },
+            { 3, 3 },
+            { 0, -3 },
+            { 0, 3 },
+            { -3, -3 },
+            { -3, 0 },
+            { -3, 3 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     MountainFalcon = function(piece, pickup)
@@ -3046,7 +3152,17 @@ local GetMovement = {
     end,
 
     SoaringEagle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 2, -2 },
+            { 2, 2 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     Soldier = function(piece, pickup)
@@ -3095,7 +3211,19 @@ local GetMovement = {
     end,
 
     SpiritTurtle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 3, 0 },
+            { 0, -3 },
+            { 0, 3 },
+            { -3, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     SquareMover = function(piece, pickup)
@@ -3291,7 +3419,19 @@ local GetMovement = {
     end,
 
     TreasureTurtle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece)
+        })
+        local tiles = GetTileSet(piece, {
+            { 2, 0 },
+            { 0, -2 },
+            { 0, 2 },
+            { -2, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     TurtleDove = function(piece, pickup)
