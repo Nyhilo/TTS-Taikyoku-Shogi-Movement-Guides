@@ -976,7 +976,21 @@ local GetMovement = {
     end,
 
     FlyingCat = function(piece, pickup)
+        local innerTiles = GetTileSet(piece, {
+            { -1, 0 },
+            { -1, -1 },
+            { -1, 1 },
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 0, -3 },
+            { 3, -3 },
+            { 3, 0 },
+            { 3, 3 },
+            { 0, 3 },
+        })
 
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     FlyingCock = function(piece, pickup)
@@ -995,7 +1009,14 @@ local GetMovement = {
     end,
 
     FlyingDragon = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { 2, -2 },
+            { 2, 2 },
+            { -2, 2 },
+            { -2, -2 },
+        })
 
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     FlyingFalcon = function(piece, pickup)
@@ -1734,7 +1755,19 @@ local GetMovement = {
     end,
 
     Kirin = function(piece, pickup)
+        local innerTiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 1, 1 },
+            { -1, 1 },
+            { -1, -1 },
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 0, -2 },
+            { 0, 2 },
+        })
 
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     KirinMaster = function(piece, pickup)
@@ -1742,7 +1775,12 @@ local GetMovement = {
     end,
 
     Knight = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { 2, -1 },
+            { 2, 1 }
+        })
 
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     Lance = function(piece, pickup)
@@ -2122,7 +2160,21 @@ local GetMovement = {
     end,
 
     Phoenix = function(piece, pickup)
+        local innerTiles = GetTileSet(piece, {
+            { 1, 0 },
+            { 0, -1 },
+            { 0, 1 },
+            { -1, 0 },
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 1, -1 },
+            { 1, 1 },
+            { -1, 1 },
+            { -1, -1 },
+        })
 
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     PhoenixMaster = function(piece, pickup)
@@ -2472,7 +2524,20 @@ local GetMovement = {
     end,
 
     RunningHorse = function(piece, pickup)
+        local innerTile = GetRelativeTile(piece, -1, 0)
+        local outerTiles = GetTileSet(piece, {
+            { -2, -2 },
+            { -2, 2 },
+        })
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+        })
 
+        SetColor(innerTile, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     RunningLeopard = function(piece, pickup)
