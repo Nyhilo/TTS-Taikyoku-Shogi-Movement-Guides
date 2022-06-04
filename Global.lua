@@ -14,7 +14,6 @@ local Colors = {
     , JumpLine = { r = 0.5, g = 0, b = 0.75, a = 0.5 }
     , Slide = { r = 0, g = 0, b = 1, a = 0.5 }
     , Jump = { r = 1, g = 1, b = 0, a = 0.5 }
-    , Jump2 = { r = 0, g = 1, b = 0.5, a = 0.5 }
     , Fly = { r = 0, g = 0, b = 0, a = 0.5 }
     , Eat = { r = 0, g = 1, b = 0.5, a = 0.5 }
 }
@@ -362,7 +361,17 @@ local GetMovement = {
     end,
 
     BuddhistSpirit = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece),
+        })
 
+        local outerTiles = GetAreaTiles(piece, 2)
+        local innerTiles = GetAreaTiles(piece, 1)
+
+        SetColors(lines, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
+        SetColors(innerTiles, Colors.Eat, pickup)
     end,
 
     BurningChariot = function(piece, pickup)
@@ -2277,7 +2286,14 @@ local GetMovement = {
     end,
 
     LionHawk = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
 
+        local outerTiles = GetAreaTiles(piece, 2)
+        local innerTiles = GetAreaTiles(piece, 1)
+
+        SetColors(lines, Colors.JumpLine, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
+        SetColors(innerTiles, Colors.Eat, pickup)
     end,
 
     LittleStandard = function(piece, pickup)
