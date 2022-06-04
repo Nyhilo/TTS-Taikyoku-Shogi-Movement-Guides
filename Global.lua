@@ -1691,12 +1691,11 @@ local GetMovement = {
             GetTiles_TopRight(piece, 3),
         })
         local outerTiles = GetTileListSet({
-            GetTileSet(piece, {
-                { 0, -1 },
-                { 1, 0 },
-                { 0, 1 },
-            }),
+            GetTiles_Top(piece, 3),
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
             GetTiles_BottomLeft(piece, 3),
+            GetTiles_Bottom(piece, 3),
             GetTiles_BottomRight(piece, 3)
         })
 
