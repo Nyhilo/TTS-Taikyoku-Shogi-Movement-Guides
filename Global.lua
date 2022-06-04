@@ -411,7 +411,27 @@ local GetMovement = {
     end,
 
     Capricorn = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
+        -- Creates a shape that looks like this -> ☩
+        -- But... rotated 45 degrees
+        local tiles = GetTileSet(piece, {
+            { 4, -2 },
+            { 2, -4 },
 
+            { 4, 2 },
+            { 2, 4 },
+
+            { -2, -4 },
+            { -4, -2 },
+
+            { -2, 4 },
+            { -4, 2 },
+        })
+        local innerTiles = GetCrossTiles(piece, 1)
+
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
     end,
 
     CaptiveBird = function(piece, pickup)
@@ -1901,11 +1921,48 @@ local GetMovement = {
     end,
 
     HeavenlyTetrarchKing = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetCrossTiles(piece, 1)
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 2, -2 },
+            { 2, 0 },
+            { 2, 2 },
+            { 0, -2 },
+            { 0, 2 },
+            { -2, -2 },
+            { -2, 0 },
+            { -2, 2 },
+        })
 
+        SetColors(lines, Colors.JumpLine, pickup)
+        SetColors(innerTiles, Colors.Eat, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     HookMover = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        -- Creates a shape that looks like this -> ☩
+        local tiles = GetTileSet(piece, {
+            { 3, -1 },
+            { 3, 1 },
 
+            { 1, -3 },
+            { -1, -3 },
+
+            { 1, 3 },
+            { -1, 3 },
+
+            { -3, -1 },
+            { -3, 1 },
+        })
+
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     HornedFalcon = function(piece, pickup)
@@ -2502,7 +2559,27 @@ local GetMovement = {
     end,
 
     Peacock = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+        })
+        -- Creates a shape that looks like this -> ☩
+        -- But... rotated 45 degrees
+        local tiles = GetTileSet(piece, {
+            { 4, -2 },
+            { 2, -4 },
 
+            { 4, 2 },
+            { 2, 4 },
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_BottomLeft(piece, 2),
+            GetTiles_BottomRight(piece, 2),
+        })
+
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
     end,
 
     Phoenix = function(piece, pickup)
@@ -3545,7 +3622,25 @@ local GetMovement = {
     end,
 
     Tengu = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
+        -- Creates a shape that looks like this -> ☩
+        -- But... rotated 45 degrees
+        local tiles = GetTileSet(piece, {
+            { 4, -2 },
+            { 2, -4 },
 
+            { 4, 2 },
+            { 2, 4 },
+
+            { -2, -4 },
+            { -4, -2 },
+
+            { -2, 4 },
+            { -4, 2 },
+        })
+
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Line, pickup)
     end,
 
     ThunderRunner = function(piece, pickup)
