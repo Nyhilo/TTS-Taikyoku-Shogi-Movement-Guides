@@ -15,7 +15,7 @@ local Colors = {
     , Slide = { r = 0, g = 0, b = 1, a = 0.5 }
     , Jump = { r = 1, g = 1, b = 0, a = 0.5 }
     , Jump2 = { r = 0, g = 1, b = 0.5, a = 0.5 }
-    , Fly = { r = 1, g = 0, b = 1, a = 0.5 }
+    , Fly = { r = 0, g = 0, b = 0, a = 0.5 }
     , Eat = { r = 0, g = 1, b = 0.5, a = 0.5 }
 }
 
@@ -255,7 +255,9 @@ local GetMovement = {
     end,
 
     BishopGeneral = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
 
+        SetColors(lines, Colors.Fly, pickup)
     end,
 
     BlindBear = function(piece, pickup)
@@ -1038,7 +1040,16 @@ local GetMovement = {
     end,
 
     FlyingCrocodile = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        local tiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_BottomLeft(piece, 2),
+            GetTiles_BottomRight(piece, 2),
+        })
 
+        SetColors(lines, Colors.Fly, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     FlyingDragon = function(piece, pickup)
@@ -1725,7 +1736,12 @@ local GetMovement = {
     end,
 
     GreatGeneral = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetCrossLines(piece),
+            GetDiagonalLines(piece),
+        })
 
+        SetColors(lines, Colors.Fly, pickup)
     end,
 
     GreatHorse = function(piece, pickup)
@@ -2903,7 +2919,9 @@ local GetMovement = {
     end,
 
     RookGeneral = function(piece, pickup)
+        local lines = GetCrossLines(piece)
 
+        SetColors(lines, Colors.Fly, pickup)
     end,
 
     RunningBear = function(piece, pickup)
@@ -3758,7 +3776,16 @@ local GetMovement = {
     end,
 
     ViceGeneral = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        local tiles = GetTileSet(piece, {
+            { 2, 0 },
+            { 0, -2 },
+            { 0, 2 },
+            { -2, 0 },
+        })
 
+        SetColors(lines, Colors.Fly, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
     end,
 
     ViolentBear = function(piece, pickup)
@@ -3776,7 +3803,16 @@ local GetMovement = {
     end,
 
     ViolentDragon = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
+        local tiles = GetTileListSet({
+            GetTiles_Top(piece, 2),
+            GetTiles_Left(piece, 2),
+            GetTiles_Right(piece, 2),
+            GetTiles_Bottom(piece, 2),
+        })
 
+        SetColors(lines, Colors.Fly, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     ViolentOx = function(piece, pickup)
