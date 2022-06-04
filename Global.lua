@@ -1377,10 +1377,6 @@ local GetMovement = {
         SetColors(tiles, Colors.Slide, pickup)
     end,
 
-    FreeKing = function(piece, pickup)
-
-    end,
-
     FreeLeopard = function(piece, pickup)
         local tiles = GetTileListSet({
             GetTileLine_TopLeft(piece),
@@ -1792,7 +1788,17 @@ local GetMovement = {
     end,
 
     GreatLeopard = function(piece, pickup)
+        local lines = GetTileLine_Top(piece)
+        local tiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+            GetTiles_Left(piece, 2),
+            GetTiles_Right(piece, 2),
+            GetTiles_Bottom(piece, 1),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     GreatMaster = function(piece, pickup)
@@ -1888,7 +1894,26 @@ local GetMovement = {
     end,
 
     GreatTurtle = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 3, 0 },
+            { -3, 0 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     GreatWhale = function(piece, pickup)
@@ -2050,10 +2075,6 @@ local GetMovement = {
         local tiles = GetKingTiles(piece, 2)
 
         SetColors(tiles, Colors.Slide, pickup)
-    end,
-
-    KingKing = function(piece, pickup)
-
     end,
 
     Kirin = function(piece, pickup)
@@ -2724,7 +2745,14 @@ local GetMovement = {
     end,
 
     PupGeneral = function(piece, pickup)
+        local ftiles = GetTiles_Top(piece, 4)
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { -1, 1 },
+        })
 
+        SetColors(ftiles, Colors.Slide, pickup)
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     Queen = function(piece, pickup)
@@ -3236,8 +3264,18 @@ local GetMovement = {
         SetColors(tiles, Colors.Slide, pickup)
     end,
 
-    RushingBoa = function(piece, pickup)
+    RushingBoar = function(piece, pickup)
+        local tiles = GetTileSet(piece, {
+            { -1, -1 },
+            { 0, -1 },
+            { 1, -1 },
+            { 1, 0 },
+            { -1, 1 },
+            { 0, 1 },
+            { 1, 1 },
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
     end,
 
     SavageTiger = function(piece, pickup)
@@ -3947,7 +3985,21 @@ local GetMovement = {
     end,
 
     ViolentWind = function(piece, pickup)
+        local tiles = {
+            GetRelativeTile(piece, 0, -1),
+            GetRelativeTile(piece, 0, 1),
+        }
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_Bottom(piece),
+            GetTileLine_BottomRight(piece),
+        })
 
+        SetColors(tiles, Colors.Slide, pickup)
+        SetColors(lines, Colors.Line, pickup)
     end,
 
     ViolentWolf = function(piece, pickup)
@@ -4341,7 +4393,6 @@ local MovementTable = {
     ['Free Eagle'] = GetMovement.FreeEagle,
     ['Free Fire'] = GetMovement.FreeFire,
     ['Free Horse'] = GetMovement.FreeHorse,
-    ['Free King'] = GetMovement.FreeKing,
     ['Free Leopard'] = GetMovement.FreeLeopard,
     ['Free Ox'] = GetMovement.FreeOx,
     ['Free Pig'] = GetMovement.FreePig,
@@ -4388,7 +4439,6 @@ local MovementTable = {
     ['Howling Dog'] = GetMovement.HowlingDog,
     ['Iron General'] = GetMovement.IronGeneral,
     ['King'] = GetMovement.King,
-    ['KingKing'] = GetMovement.KingKing,
     ['Kirin'] = GetMovement.Kirin,
     ['Kirin-Master'] = GetMovement.KirinMaster,
     ['Knight'] = GetMovement.Knight,
@@ -4474,7 +4524,7 @@ local MovementTable = {
     ['Running Tile'] = GetMovement.RunningTile,
     ['Running Wolf'] = GetMovement.RunningWolf,
     ['Rushing Bird'] = GetMovement.RushingBird,
-    ['Rushing Boa'] = GetMovement.RushingBoa,
+    ['Rushing Boar'] = GetMovement.RushingBoar,
     ['Savage Tiger'] = GetMovement.SavageTiger,
     ['Side Boar'] = GetMovement.SideBoar,
     ['Side Dragon'] = GetMovement.SideDragon,
