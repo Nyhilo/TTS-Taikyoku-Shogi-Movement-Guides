@@ -11,7 +11,7 @@ local Colors = {
     Reset = { r = 1, g = 1, b = 1, a = 0 }
     , Place = { r = 0.5, g = 0.5, b = 0.5, a = 0.5 }
     , Line = { r = 1, g = 0, b = 0, a = 0.5 }
-    , JumpLine = { r = 1, g = 0.5, b = 0, a = 0.5 }
+    , JumpLine = { r = 0.5, g = 0, b = 0.75, a = 0.5 }
     , Slide = { r = 0, g = 0, b = 1, a = 0.5 }
     , Jump = { r = 1, g = 1, b = 0, a = 0.5 }
     , Jump2 = { r = 0, g = 1, b = 0.5, a = 0.5 }
@@ -139,7 +139,19 @@ end
 
 local GetMovement = {
     AncientDragon = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local jumps = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(jumps, Colors.Jump, pickup)
     end,
 
     AngryBoar = function(piece, pickup)
@@ -471,7 +483,28 @@ local GetMovement = {
     end,
 
     CenterMaster = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_Top(piece),
+            GetTileLine_TopRight(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 2, -2 },
+            { 2, 0 },
+            { 2, 2 },
+            { -2, 0 },
+        })
 
+        SetColors(lines, Colors.JumpLine, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     CenterStandard = function(piece, pickup)
@@ -1123,7 +1156,24 @@ local GetMovement = {
     end,
 
     FreeBird = function(piece, pickup)
+        local lines = GetCrossLines(piece)
+        local jumpLines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
+        })
+        local outerTiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3)
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(jumpLines, Colors.JumpLine, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     FreeBoar = function(piece, pickup)
@@ -1248,7 +1298,7 @@ local GetMovement = {
             { 4, 4 },
         })
 
-        SetColors(lines, Colors.Line, pickup)
+        SetColors(lines, Colors.JumpLine, pickup)
         SetColors(tiles, Colors.Jump, pickup)
     end,
 
@@ -1487,7 +1537,29 @@ local GetMovement = {
     end,
 
     GoldenBird = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local jumpLines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 3),
+            GetTiles_Right(piece, 3),
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3),
+        })
+        local outerTiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3)
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(jumpLines, Colors.JumpLine, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     GoldenDeer = function(piece, pickup)
@@ -1604,18 +1676,44 @@ local GetMovement = {
             { -2, 2 },
         })
 
-        SetColors(lines, Colors.Line, pickup)
+        SetColors(lines, Colors.JumpLine, pickup)
         SetColors(tiles, Colors.Jump, pickup)
     end,
 
     GreatElephant = function(piece, pickup)
+        local jumpLines = GetTileListSet({
+            GetCrossLines(piece),
+            GetTileLine_BottomLeft(piece),
+            GetTileLine_BottomRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 3),
+            GetTiles_TopRight(piece, 3),
+        })
+        local outerTiles = GetTileListSet({
+            GetTileSet(piece, {
+                { 0, -1 },
+                { 1, 0 },
+                { 0, 1 },
+            }),
+            GetTiles_BottomLeft(piece, 3),
+            GetTiles_BottomRight(piece, 3)
+        })
 
+        SetColors(jumpLines, Colors.JumpLine, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     GreatFalcon = function(piece, pickup)
         local lines = GetTileListSet({
-            GetCrossLines(piece),
-            GetDiagonalLines(piece)
+            GetDiagonalLines(piece),
+            GetTileLine_Left(piece),
+            GetTileLine_Right(piece),
+        })
+        local jumpLines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
         })
         local tiles = GetTileSet(piece, {
             { 2, 0 },
@@ -1623,6 +1721,7 @@ local GetMovement = {
         })
 
         SetColors(lines, Colors.Line, pickup)
+        SetColors(jumpLines, Colors.JumpLine, pickup)
         SetColors(tiles, Colors.Jump, pickup)
     end,
 
@@ -2195,7 +2294,7 @@ local GetMovement = {
             { -3, 3 },
         })
 
-        SetColors(lines, Colors.Line, pickup)
+        SetColors(lines, Colors.JumpLine, pickup)
         SetColors(tiles, Colors.Jump, pickup)
     end,
 
@@ -2543,7 +2642,20 @@ local GetMovement = {
     end,
 
     RainDemon = function(piece, pickup)
+        local lines = GetTileLine_Bottom(piece)
+        local jumpLines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 2),
+            GetTiles_Right(piece, 2),
+            GetTiles_Top(piece, 3),
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(jumpLines, Colors.Jump, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
     end,
 
     RainDragon = function(piece, pickup)
@@ -2753,7 +2865,36 @@ local GetMovement = {
     end,
 
     RocMaster = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetTileLine_Top(piece),
+            GetTileLine_Bottom(piece),
+        })
+        local jumpLines = GetTileListSet({
+            GetTileLine_TopLeft(piece),
+            GetTileLine_TopRight(piece),
+        })
+        local innerTiles = GetTileListSet({
+            GetTiles_Left(piece, 5),
+            GetTiles_Right(piece, 5),
+            GetTiles_BottomLeft(piece, 5),
+            GetTiles_BottomRight(piece, 5),
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 3, -3 },
+            { 3, 3 },
+        })
+        local resetTiles = GetTileSet(piece, {
+            { 2, -2 },
+            { 2, 2 },
+            { 1, -1 },
+            { 1, 1 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(jumpLines, Colors.JumpLine, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
+        SetColors(resetTiles, Colors.Reset, pickup)
     end,
 
     Rook = function(piece, pickup)
@@ -3356,7 +3497,34 @@ local GetMovement = {
     end,
 
     TeachingKing = function(piece, pickup)
+        local lines = GetTileListSet({
+            GetDiagonalLines(piece),
+            GetCrossLines(piece),
+        })
+        local tiles = GetTileSet(piece, {
+            { 3, -3 },
+            { 3, 0 },
+            { 3, 3 },
+            { 0, -3 },
+            { 0, 3 },
+            { -3, -3 },
+            { -3, 0 },
+            { -3, 3 },
+        })
+        local resetTiles = GetTileListSet({
+            GetTiles_TopLeft(piece, 2),
+            GetTiles_Top(piece, 2),
+            GetTiles_TopRight(piece, 2),
+            GetTiles_Left(piece, 2),
+            GetTiles_Right(piece, 2),
+            GetTiles_BottomLeft(piece, 2),
+            GetTiles_Bottom(piece, 2),
+            GetTiles_BottomRight(piece, 2),
+        })
 
+        SetColors(lines, Colors.JumpLine, pickup)
+        SetColors(tiles, Colors.Jump, pickup)
+        SetColors(resetTiles, Colors.Reset, pickup)
     end,
 
     Tengu = function(piece, pickup)
@@ -3846,7 +4014,33 @@ local GetMovement = {
     end,
 
     WoodenDove = function(piece, pickup)
+        local lines = GetDiagonalLines(piece)
+        local innerTiles = GetTileListSet({
+            GetTiles_Top(piece, 2),
+            GetTiles_Left(piece, 2),
+            GetTiles_Right(piece, 2),
+            GetTiles_Bottom(piece, 2),
+            GetTileSet(piece, {
+                { 4, -4 },
+                { 4, 4 },
+                { -4, -4 },
+                { -4, 4 },
+                { 5, -5 },
+                { 5, 5 },
+                { -5, -5 },
+                { -5, 5 },
+            })
+        })
+        local outerTiles = GetTileSet(piece, {
+            { 3, -3 },
+            { 3, 3 },
+            { -3, -3 },
+            { -3, 3 },
+        })
 
+        SetColors(lines, Colors.Line, pickup)
+        SetColors(innerTiles, Colors.Slide, pickup)
+        SetColors(outerTiles, Colors.Jump, pickup)
     end,
 
     WoodlandDemon = function(piece, pickup)
